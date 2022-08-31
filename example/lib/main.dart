@@ -37,6 +37,7 @@ class ImagePickerExampleHomePage extends StatefulWidget {
 class _ImagePickerExampleHomePageState
     extends State<ImagePickerExampleHomePage> {
   Uint8List? image;
+  ImagePicker imagePicker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class _ImagePickerExampleHomePageState
                 'Pick or make an Image/Photo!',
               ),
               ElevatedButton(
-                  onPressed: onPressed, child: const Text('Pick Image'))
+                  onPressed: pickImage, child: const Text('Pick Image'))
             ],
           ),
         ),
@@ -69,8 +70,7 @@ class _ImagePickerExampleHomePageState
     );
   }
 
-  void onPressed() async {
-    ImagePicker imagePicker = ImagePicker();
+  void pickImage() async {
     Uint8List? imageInBytes = await imagePicker.showPickImageDialog(context);
     if (imageInBytes != null) {
       setState(() {
