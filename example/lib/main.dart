@@ -60,7 +60,7 @@ class _ImagePickerExampleHomePageState
               ]),
               const SizedBox(height: 20),
               const Text(
-                'Pick or make an Image/Photo!',
+                'Pick an image or make a photo!',
               ),
               ElevatedButton(
                   onPressed: pickImage, child: const Text('Pick Image'))
