@@ -13,8 +13,8 @@ class ImagePicker {
       double spaceBetweenIcons = ImagePickerDefaultParameters.spaceBetweenIcons,
       String makePhotoText = ImagePickerDefaultParameters.makePhotoText,
       IconData makePhotoIcon = ImagePickerDefaultParameters.makePhotoIcon,
-      String selectImageText = ImagePickerDefaultParameters.selectImageText,
       IconData selectImageIcon = ImagePickerDefaultParameters.selectImageIcon,
+      String selectImageText = ImagePickerDefaultParameters.selectImageText,
       String closeButtonText = ImagePickerDefaultParameters.closeButtonText}) {
     return ImagePickerUI().pickImageDialog(
         context,
@@ -23,10 +23,10 @@ class ImagePicker {
         iconSize,
         iconTextSize,
         spaceBetweenIcons,
-        makePhotoText,
         makePhotoIcon,
-        selectImageText,
+        makePhotoText,
         selectImageIcon,
+        selectImageText,
         closeButtonText);
   }
 }

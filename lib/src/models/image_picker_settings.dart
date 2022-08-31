@@ -6,9 +6,9 @@ class ImagePickerDefaultParameters {
   static const double iconSize = 125;
   static const double iconTextSize = 15;
   static const double spaceBetweenIcons = 30;
-  static const String makePhotoText = "Take a Picture";
   static const IconData makePhotoIcon = Icons.camera_alt_rounded;
-  static const String selectImageText = "Select File";
+  static const String makePhotoText = "Take a Picture";
   static const IconData selectImageIcon = Icons.image;
+  static const String selectImageText = "Select File";
   static const String closeButtonText = "Close";
 }

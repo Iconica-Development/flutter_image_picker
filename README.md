@@ -27,18 +27,18 @@ To use this package, add `flutter_image_picker` as a [dependency in your pubspec
 See [Example Code](example/lib/main.dart) for an example on how to use this package.
 
 You can add optional parameters to the `showImagePickerDialog(context)` function call. These are:
-|     Parameter     |  Explaination |
-|-------------------|---------------|
-|       title       |  left-aligned |
-|   titleTextSize   |    centered   |
-|     iconSize      | right-aligned |
-|   iconTextSize    | right-aligned |
-| spaceBetweenIcons | right-aligned |
-|   makePhotoText   | right-aligned |
-|   makePhotoIcon   | right-aligned |
-|  selectImageText  | right-aligned |
-|  selectImageIcon  | right-aligned |
-|  closeButtonText  | right-aligned |
+|     Parameter     |  Explaination  |
+|-------------------|----------------|
+|       title       | The title that's shown at the top of the Image Picker Dialog in the bottom of the screen |
+|   titleTextSize   | The font size of the title mentioned above |
+|     iconSize      | The size of the icons that are shown in the Image Picker Dialog |
+|   iconTextSize    | The font size of the text underneath the icons in the Image Picker Dialog |
+| spaceBetweenIcons | The space in pixels between the two icons in the Image Picker Dialog |
+|   makePhotoIcon   | The icon that is shown as the Make Photo button |
+|   makePhotoText   | The text that is shown underneath the Make Photo icon in the Image Picker Dialog |
+|  selectImageIcon  | The icon that is shown as the Select Image button |
+|  selectImageText  | The text that is shown underneath the Select Image icon in the Image Picker Dialog |
+|  closeButtonText  | The text that is visible on the button that is shown at the bottom of the Image Picker Dialog that closes the dialog |
 
 ## Additional information
 

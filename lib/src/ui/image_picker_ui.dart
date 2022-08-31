@@ -14,10 +14,10 @@ class ImagePickerUI {
       double iconSize,
       double iconTextSize,
       double spaceBetweenIcons,
-      String makePhotoText,
       IconData makePhotoIcon,
-      String selectImageText,
+      String makePhotoText,
       IconData selectImageIcon,
+      String selectImageText,
       String closeButtonText) async {
     return await showModalBottomSheet<Uint8List?>(
       context: context,
