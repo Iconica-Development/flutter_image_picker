@@ -8,7 +8,14 @@ class ImagePickerUI {
   final ImagePickerService _imagePickerService = ImagePickerService();
   final double iconSize = 150;
 
-  Future<Uint8List?> pickImageDialog(BuildContext context) async {
+  Future<Uint8List?> pickImageDialog(
+      BuildContext context,
+      String title,
+      String makePhotoText,
+      IconData makePhotoIcon,
+      String selectImageText,
+      IconData selectImageIcon,
+      String closeButtonText) async {
     return await showModalBottomSheet<Uint8List?>(
       context: context,
       builder: (BuildContext context) {
@@ -16,22 +23,22 @@ class ImagePickerUI {
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            "Upload Image",
+          Text(
+            title,
             textScaleFactor: 2,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              generateColumn(context, selectImageIcon, ImageSource.gallery,
+                  selectImageText),
               generateColumn(
-                  context, Icons.image, ImageSource.gallery, "Select File"),
-              generateColumn(context, Icons.camera_alt_rounded,
-                  ImageSource.camera, "Take a picture"),
+                  context, makePhotoIcon, ImageSource.camera, makePhotoText),
             ],
           ),
           ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Close")),
+              child: Text(closeButtonText)),
         ]);
       },
     );
