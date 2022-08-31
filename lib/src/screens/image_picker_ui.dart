@@ -23,38 +23,10 @@ class ImagePickerUI {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.image),
-                    tooltip: 'Choose Image From Gallery',
-                    iconSize: iconSize,
-                    onPressed: () => _imagePickerService.pickImage(
-                        ImageSource.gallery, context),
-                  ),
-                  const Text("Select file"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.camera_alt_rounded),
-                    tooltip: 'Make Image With Camera',
-                    iconSize: iconSize,
-                    onPressed: () => _imagePickerService.pickImage(
-                        ImageSource.camera, context),
-                  ),
-                  const Text("Take a picture"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
+              generateColumn(
+                  context, Icons.image, ImageSource.gallery, "Select File"),
+              generateColumn(context, Icons.camera_alt_rounded,
+                  ImageSource.camera, "Take a picture"),
             ],
           ),
           ElevatedButton(
@@ -62,6 +34,24 @@ class ImagePickerUI {
               child: const Text("Close")),
         ]);
       },
+    );
+  }
+
+  Column generateColumn(BuildContext context, IconData icon,
+      ImageSource imageSource, String bottomText) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(icon),
+          iconSize: iconSize,
+          onPressed: () => _imagePickerService.pickImage(imageSource, context),
+        ),
+        Text(bottomText),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
     );
   }
 }

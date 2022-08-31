@@ -73,15 +73,17 @@ class _ImagePickerExampleHomePageState
 
   void pickImage() async {
     Uint8List? imageInBytes = await imagePicker.showPickImageDialog(context);
-    if (imageInBytes != null && !listEquals(image, imageInBytes)) {
-      setState(() {
-        image = imageInBytes;
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Selected image is already being displayed!')),
-      );
+    if (imageInBytes != null) {
+      if (!listEquals(image, imageInBytes)) {
+        setState(() {
+          image = imageInBytes;
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Selected image is already being displayed!')),
+        );
+      }
     }
   }
 }
