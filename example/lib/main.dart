@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_picker/image_picker.dart';
 
@@ -72,10 +73,15 @@ class _ImagePickerExampleHomePageState
 
   void pickImage() async {
     Uint8List? imageInBytes = await imagePicker.showPickImageDialog(context);
-    if (imageInBytes != null) {
+    if (imageInBytes != null && !listEquals(image, imageInBytes)) {
       setState(() {
         image = imageInBytes;
       });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Selected image is already being displayed!')),
+      );
     }
   }
 }
