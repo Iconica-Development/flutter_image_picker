@@ -1,16 +1,3 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
 # Flutter Image Picker
 Flutter Image Picker is a package you can use to implement an Image Picker in your Flutter app.
 
@@ -24,7 +11,7 @@ To use this package, add `flutter_image_picker` as a [dependency in your pubspec
 
 ## Example
 
-See [Example Code](example/lib/main.dart) for an example on how to use this package.
+See the [Example Code](example/lib/main.dart) for an example on how to use this package.
 
 You can add optional parameters to the `showImagePickerDialog(context)` function call. These are:
 |     Parameter     |  Explaination  |
@@ -39,9 +26,3 @@ You can add optional parameters to the `showImagePickerDialog(context)` function
 |  selectImageIcon  | The icon that is shown as the Select Image button |
 |  selectImageText  | The text that is shown underneath the Select Image icon in the Image Picker Dialog |
 |  closeButtonText  | The text that is visible on the button that is shown at the bottom of the Image Picker Dialog that closes the dialog |
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
