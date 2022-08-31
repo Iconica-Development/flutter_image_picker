@@ -14,7 +14,7 @@ class ImagePickerExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Image Picker Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -38,9 +38,9 @@ class ImagePickerExampleHomePage extends StatefulWidget {
 class _ImagePickerExampleHomePageState
     extends State<ImagePickerExampleHomePage> {
   Uint8List? image;
-  ImagePicker imagePicker = ImagePicker();
-  double whiteSpace = 20;
-  double imageWidth = 300;
+  final ImagePicker imagePicker = ImagePicker();
+  final double whiteSpace = 20;
+  final double imageWidth = 300;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class _ImagePickerExampleHomePageState
   }
 
   void pickImage() async {
-    Uint8List? imageInBytes = await imagePicker.showPickImageDialog(context);
+    Uint8List? imageInBytes = await imagePicker.showImagePickerDialog(context);
     if (imageInBytes != null) {
       if (!listEquals(image, imageInBytes)) {
         setState(() {

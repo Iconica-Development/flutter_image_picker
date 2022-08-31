@@ -35,13 +35,13 @@ class ImagePickerUI {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                generateColumn(context, selectImageIcon, iconSize, iconTextSize,
-                    ImageSource.gallery, selectImageText),
+                generateIconButtonWithText(context, selectImageIcon, iconSize,
+                    iconTextSize, ImageSource.gallery, selectImageText),
                 SizedBox(
                   width: spaceBetweenIcons,
                 ),
-                generateColumn(context, makePhotoIcon, iconSize, iconTextSize,
-                    ImageSource.camera, makePhotoText),
+                generateIconButtonWithText(context, makePhotoIcon, iconSize,
+                    iconTextSize, ImageSource.camera, makePhotoText),
               ],
             ),
             Row(
@@ -65,8 +65,13 @@ class ImagePickerUI {
     );
   }
 
-  Column generateColumn(BuildContext context, IconData icon, double iconSize,
-      double iconTextSize, ImageSource imageSource, String bottomText) {
+  Column generateIconButtonWithText(
+      BuildContext context,
+      IconData icon,
+      double iconSize,
+      double iconTextSize,
+      ImageSource imageSource,
+      String bottomText) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[

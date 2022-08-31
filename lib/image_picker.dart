@@ -1,11 +1,11 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 
-import 'src/screens/image_picker_ui.dart';
 import 'src/models/image_picker_settings.dart';
+import 'src/ui/image_picker_ui.dart';
 
 class ImagePicker {
-  Future<Uint8List?> showPickImageDialog(BuildContext context,
+  Future<Uint8List?> showImagePickerDialog(BuildContext context,
       {String title = ImagePickerDefaultParameters.title,
       double titleTextSize = ImagePickerDefaultParameters.titleTextSize,
       double iconSize = ImagePickerDefaultParameters.iconSize,
