@@ -6,11 +6,14 @@ import 'package:image_picker/image_picker.dart';
 
 class ImagePickerUI {
   final ImagePickerService _imagePickerService = ImagePickerService();
-  final double iconSize = 150;
 
   Future<Uint8List?> pickImageDialog(
       BuildContext context,
       String title,
+      double titleTextSize,
+      double iconSize,
+      double iconTextSize,
+      double spaceBetweenIcons,
       String makePhotoText,
       IconData makePhotoIcon,
       String selectImageText,
@@ -19,33 +22,51 @@ class ImagePickerUI {
     return await showModalBottomSheet<Uint8List?>(
       context: context,
       builder: (BuildContext context) {
-        return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            title,
-            textScaleFactor: 2,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              generateColumn(context, selectImageIcon, ImageSource.gallery,
-                  selectImageText),
-              generateColumn(
-                  context, makePhotoIcon, ImageSource.camera, makePhotoText),
-            ],
-          ),
-          ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(closeButtonText)),
-        ]);
+        return Wrap(
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                title,
+                style: TextStyle(
+                  fontSize: titleTextSize,
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                generateColumn(context, selectImageIcon, iconSize, iconTextSize,
+                    ImageSource.gallery, selectImageText),
+                SizedBox(
+                  width: spaceBetweenIcons,
+                ),
+                generateColumn(context, makePhotoIcon, iconSize, iconTextSize,
+                    ImageSource.camera, makePhotoText),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 300,
+                  height: 40,
+                  child: ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(closeButtonText)),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+          ],
+        );
       },
     );
   }
 
-  Column generateColumn(BuildContext context, IconData icon,
-      ImageSource imageSource, String bottomText) {
+  Column generateColumn(BuildContext context, IconData icon, double iconSize,
+      double iconTextSize, ImageSource imageSource, String bottomText) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -54,7 +75,10 @@ class ImagePickerUI {
           iconSize: iconSize,
           onPressed: () => _imagePickerService.pickImage(imageSource, context),
         ),
-        Text(bottomText),
+        Text(
+          bottomText,
+          style: TextStyle(fontSize: iconTextSize),
+        ),
         const SizedBox(
           height: 20,
         ),

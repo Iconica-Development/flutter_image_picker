@@ -6,13 +6,27 @@ import 'src/models/image_picker_settings.dart';
 
 class ImagePicker {
   Future<Uint8List?> showPickImageDialog(BuildContext context,
-      {String title = ImagePickerSettings.title,
-      String makePhotoText = ImagePickerSettings.makePhotoText,
-      IconData makePhotoIcon = ImagePickerSettings.makePhotoIcon,
-      String selectImageText = ImagePickerSettings.selectImageText,
-      IconData selectImageIcon = ImagePickerSettings.selectImageIcon,
-      String closeButtonText = ImagePickerSettings.closeButtonText}) {
-    return ImagePickerUI().pickImageDialog(context, title, makePhotoText,
-        makePhotoIcon, selectImageText, selectImageIcon, closeButtonText);
+      {String title = ImagePickerDefaultParameters.title,
+      double titleTextSize = ImagePickerDefaultParameters.titleTextSize,
+      double iconSize = ImagePickerDefaultParameters.iconSize,
+      double iconTextSize = ImagePickerDefaultParameters.iconTextSize,
+      double spaceBetweenIcons = ImagePickerDefaultParameters.spaceBetweenIcons,
+      String makePhotoText = ImagePickerDefaultParameters.makePhotoText,
+      IconData makePhotoIcon = ImagePickerDefaultParameters.makePhotoIcon,
+      String selectImageText = ImagePickerDefaultParameters.selectImageText,
+      IconData selectImageIcon = ImagePickerDefaultParameters.selectImageIcon,
+      String closeButtonText = ImagePickerDefaultParameters.closeButtonText}) {
+    return ImagePickerUI().pickImageDialog(
+        context,
+        title,
+        titleTextSize,
+        iconSize,
+        iconTextSize,
+        spaceBetweenIcons,
+        makePhotoText,
+        makePhotoIcon,
+        selectImageText,
+        selectImageIcon,
+        closeButtonText);
   }
 }
