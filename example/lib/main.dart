@@ -39,6 +39,8 @@ class _ImagePickerExampleHomePageState
     extends State<ImagePickerExampleHomePage> {
   Uint8List? image;
   ImagePicker imagePicker = ImagePicker();
+  double whiteSpace = 20;
+  double imageWidth = 300;
 
   @override
   Widget build(BuildContext context) {
@@ -53,17 +55,27 @@ class _ImagePickerExampleHomePageState
             children: <Widget>[
               Column(children: [
                 if (image == null) ...[
-                  Image.asset('assets/images/placeholder.png')
+                  Image.asset(
+                    'assets/images/placeholder.png',
+                    width: imageWidth,
+                    height: imageWidth,
+                  )
                 ] else ...[
-                  Image.memory(image!)
+                  Image.memory(
+                    image!,
+                    width: imageWidth,
+                    height: imageWidth,
+                  )
                 ]
               ]),
-              const SizedBox(height: 20),
+              SizedBox(height: whiteSpace),
               const Text(
                 'Pick an image or make a photo!',
               ),
+              SizedBox(height: whiteSpace / 2),
               ElevatedButton(
-                  onPressed: pickImage, child: const Text('Pick Image'))
+                  onPressed: pickImage, child: const Text('Pick Image')),
+              SizedBox(height: whiteSpace),
             ],
           ),
         ),
