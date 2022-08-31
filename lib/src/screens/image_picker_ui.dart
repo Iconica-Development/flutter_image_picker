@@ -1,10 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_image_picker/src/services/image_picker_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerUI {
-  final ImagePicker _imagePicker = ImagePicker();
+  final ImagePickerService _imagePickerService = ImagePickerService();
 
   Future<Uint8List?> pickImageDialog(BuildContext context) async {
     return await showDialog<Uint8List?>(
@@ -23,11 +24,13 @@ class ImagePickerUI {
           ),
           actions: <Widget>[
             ElevatedButton(
-              onPressed: () => _pickImage(ImageSource.gallery, context),
+              onPressed: () =>
+                  _imagePickerService.pickImage(ImageSource.gallery, context),
               child: const Text('Pick image from Gallery'),
             ),
             ElevatedButton(
-              onPressed: () => _pickImage(ImageSource.camera, context),
+              onPressed: () =>
+                  _imagePickerService.pickImage(ImageSource.camera, context),
               child: const Text('Make picture with Camera'),
             ),
             TextButton(
@@ -40,11 +43,5 @@ class ImagePickerUI {
         );
       },
     );
-  }
-
-  void _pickImage(ImageSource source, BuildContext context) async {
-    var image =
-        await (await _imagePicker.pickImage(source: source))?.readAsBytes();
-    Navigator.of(context).pop(image);
   }
 }
