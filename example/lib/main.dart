@@ -38,7 +38,6 @@ class ImagePickerExampleHomePage extends StatefulWidget {
 class _ImagePickerExampleHomePageState
     extends State<ImagePickerExampleHomePage> {
   Uint8List? image;
-  final ImagePicker imagePicker = ImagePicker();
   final double whiteSpace = 20;
   final double imageWidth = 300;
   final String placeholder = 'assets/images/placeholder.png';
@@ -89,18 +88,15 @@ class _ImagePickerExampleHomePageState
   }
 
   /// The [pickImage] function is used to show the usage of the Image Picker Package.
-  /// The most important part is the [showImagePickerDialog] function call.
-  /// The only required parameter is the [context] of the application.
-  /// There are multiple optional parameters that can be included to customize the Image Picker Dialog.
-  /// You can add an optional parameter by for example adding [title: "Image Picker"] to the function call after the context parameter.
-  /// Check the README for all possible optional parameters you can add.
+  /// The most important part is the [ImagePicker] call.
+  /// You can add a custom [ImagePickerTheme] to it if you want to change some of the UI.
+  /// You can do that by adding [imagePickerTheme: const ImagePickerTheme()] in the [ImagePicker] in the builder.
+  /// Check the README for all possible parameters you can add in the [ImagePickerTheme].
   /// This function saves the image in a variable and if it's different than the current image it will get displayed in the application.
   /// When the same image is chosen there will be a snackbar popping up to let you know it's already being displayed.
   void pickImage() async {
     Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
-        context: context,
-        builder: (BuildContext context) =>
-            imagePicker.showImagePickerDialog(context));
+        context: context, builder: (BuildContext context) => ImagePicker());
     if (imageInBytes != null) {
       if (!listEquals(image, imageInBytes)) {
         setState(() {
