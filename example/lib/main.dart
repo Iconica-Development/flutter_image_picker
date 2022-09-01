@@ -77,7 +77,9 @@ class _ImagePickerExampleHomePageState
               ),
               SizedBox(height: whiteSpace / 2),
               ElevatedButton(
-                  onPressed: pickImage, child: const Text('Pick Image')),
+                  onPressed: pickImage,
+                  key: const Key("PickImageButton"),
+                  child: const Text('Pick Image')),
               SizedBox(height: whiteSpace),
             ],
           ),

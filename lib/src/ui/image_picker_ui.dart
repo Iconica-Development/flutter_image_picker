@@ -91,6 +91,7 @@ class ImagePickerUI {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         IconButton(
+          key: Key(bottomText),
           icon: Icon(icon),
           iconSize: iconSize,
           onPressed: () => _imagePickerService.pickImage(imageSource, context),
