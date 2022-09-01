@@ -5,6 +5,8 @@ Flutter Image Picker is a package you can use to implement an Image Picker in yo
 
 With the Flutter Image Picker you can select an existing picture from the gallery or make a picture with the camera to use in your app. 
 
+![Gif](example/gif/ImagePickerGif.gif)
+
 ## Usage
 
 To use this package, add `flutter_image_picker` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/platform-integration/platform-channels).

@@ -38,6 +38,8 @@ dependencies:
   flutter_image_picker:
     path: ../
 
+  mockito: ^5.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
