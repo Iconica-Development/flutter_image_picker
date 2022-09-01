@@ -15,7 +15,9 @@ To use this package, add `flutter_image_picker` as a [dependency in your pubspec
 
 See the [Example Code](example/lib/main.dart) for an example on how to use this package.
 
-You can add optional parameters to the `showImagePickerDialog(context)` function call. These are:
+You can add an optional `ImagePickerTheme()` to the `ImagePicker()` to change the layout of the Image Picker Dialog. You can add the following parameters to the `ImagePickerTheme`:
+An example on how to add a parameter to the `ImagePickerTheme()` is: `ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker"))`
+
 |     Parameter     |  Explaination  |
 |-------------------|----------------|
 |       title       | The title displayed at the top of the Image Picker Dialog. |
@@ -30,9 +32,6 @@ You can add optional parameters to the `showImagePickerDialog(context)` function
 |  closeButtonText  | The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 |  closeButtonWidth  | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 |  closeButtonHeight  | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-
-
-The `showImagePickerDialog(context)` function returns an `Uint8List` as value which you can use in your application.
 
 ## Issues & Feedback
 
