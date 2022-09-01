@@ -1,11 +1,11 @@
 # Flutter Image Picker
 Flutter Image Picker is a package you can use to implement an Image Picker in your Flutter app.
 
+![Gif](example/gif/ImagePickerGif.gif)
+
 ## Features
 
 With the Flutter Image Picker you can select an existing picture from the gallery or make a picture with the camera to use in your app. 
-
-![Gif](example/gif/ImagePickerGif.gif)
 
 ## Usage
 
@@ -28,3 +28,13 @@ You can add optional parameters to the `showImagePickerDialog(context)` function
 |  selectImageIcon  | The icon that is shown as the Select Image button |
 |  selectImageText  | The text that is shown underneath the Select Image icon in the Image Picker Dialog |
 |  closeButtonText  | The text that is visible on the button that is shown at the bottom of the Image Picker Dialog that closes the dialog |
+
+## Issues & Feedback
+
+Please file an [issue](https://github.com/Iconica-Development/flutter_image_picker/issues) to send feedback or report a bug,  
+If you want to ask a question or suggest an idea then you can [open an discussion](https://github.com/Iconica-Development/flutter_image_picker/discussions).  
+Thank you!
+
+## Contributing
+
+Every pull request is welcome.
