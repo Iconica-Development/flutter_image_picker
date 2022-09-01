@@ -42,7 +42,7 @@ class _ImagePickerExampleHomePageState
   final double imageWidth = 300;
   final String placeholder = 'assets/images/placeholder.png';
   final String imageAlreadyDisplayedMessage =
-      'Selected image is already being displayed!';
+      'The selected image is already being displayed!';
 
   @override
   Widget build(BuildContext context) {

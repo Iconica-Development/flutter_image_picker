@@ -18,16 +18,19 @@ See the [Example Code](example/lib/main.dart) for an example on how to use this 
 You can add optional parameters to the `showImagePickerDialog(context)` function call. These are:
 |     Parameter     |  Explaination  |
 |-------------------|----------------|
-|       title       | The title that's shown at the top of the Image Picker Dialog in the bottom of the screen |
-|   titleTextSize   | The font size of the title mentioned above |
-|     iconSize      | The size of the icons that are shown in the Image Picker Dialog |
-|   iconTextSize    | The font size of the text underneath the icons in the Image Picker Dialog |
-| spaceBetweenIcons | The space in pixels between the two icons in the Image Picker Dialog |
-|   makePhotoIcon   | The icon that is shown as the Make Photo button |
-|   makePhotoText   | The text that is shown underneath the Make Photo icon in the Image Picker Dialog |
-|  selectImageIcon  | The icon that is shown as the Select Image button |
-|  selectImageText  | The text that is shown underneath the Select Image icon in the Image Picker Dialog |
-|  closeButtonText  | The text that is visible on the button that is shown at the bottom of the Image Picker Dialog that closes the dialog |
+|       title       | The title displayed at the top of the Image Picker Dialog. |
+|   titleTextSize   | The font size of the title mentioned above. |
+|     iconSize      | The size of the icons that are visible in the Image Picker Dialog. |
+|   iconTextSize    | The font size of the text underneath the icon buttons. |
+| spaceBetweenIcons | The size of the space between the two icons in the Image Picker Dialog. |
+|   makePhotoIcon   | The icon that is displayed for the 'Make Photo' functionality of the Image Picker Dialog. |
+|   makePhotoText   | The text that is displayed underneath the 'Make Photo' icon. |
+|  selectImageIcon  | The icon that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog. |
+|  selectImageText  | The text that is displayed underneath the 'Select Image From Gallery' icon. |
+|  closeButtonText  | The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonWidth  | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonHeight  | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+
 
 The `showImagePickerDialog(context)` function returns an `Uint8List` as value which you can use in your application.
 

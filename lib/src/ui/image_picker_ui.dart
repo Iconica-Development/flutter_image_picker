@@ -48,8 +48,8 @@ class ImagePicker extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 300,
-              height: 40,
+              width: imagePickerTheme.closeButtonWidth,
+              height: imagePickerTheme.closeButtonHeight,
               child: ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
                   child: Text(imagePickerTheme.closeButtonText)),
