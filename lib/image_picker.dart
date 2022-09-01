@@ -22,7 +22,7 @@ class ImagePicker {
   /// [selectImageIcon] is the icon as [IconData] that's shown for the select image button of the Image Picker Dialog.
   /// [selectImageText] is the text that's shown underneath the select image button in the Image Picker Dialog.
   /// [closeButtonText] is the text that's shown on the close dialog button on the bottom of the Image Picker Dialog.
-  Future<Uint8List?> showImagePickerDialog(BuildContext context,
+  Widget showImagePickerDialog(BuildContext context,
       {String title = ImagePickerDefaultParameters.title,
       double titleTextSize = ImagePickerDefaultParameters.titleTextSize,
       double iconSize = ImagePickerDefaultParameters.iconSize,

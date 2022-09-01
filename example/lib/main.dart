@@ -97,7 +97,10 @@ class _ImagePickerExampleHomePageState
   /// This function saves the image in a variable and if it's different than the current image it will get displayed in the application.
   /// When the same image is chosen there will be a snackbar popping up to let you know it's already being displayed.
   void pickImage() async {
-    Uint8List? imageInBytes = await imagePicker.showImagePickerDialog(context);
+    Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
+        context: context,
+        builder: (BuildContext context) =>
+            imagePicker.showImagePickerDialog(context));
     if (imageInBytes != null) {
       if (!listEquals(image, imageInBytes)) {
         setState(() {

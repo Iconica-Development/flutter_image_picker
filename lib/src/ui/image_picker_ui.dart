@@ -14,7 +14,7 @@ class ImagePickerUI {
   /// See that function for a description of each parameter.
   /// The [pickImageDialog] function can return a [Uint8List] that is the picked image as a bytes list.
   /// It can also return null when no image gets chosen.
-  Future<Uint8List?> pickImageDialog(
+  Widget pickImageDialog(
       BuildContext context,
       String title,
       double titleTextSize,
@@ -25,50 +25,45 @@ class ImagePickerUI {
       String makePhotoText,
       IconData selectImageIcon,
       String selectImageText,
-      String closeButtonText) async {
-    return await showModalBottomSheet<Uint8List?>(
-      context: context,
-      builder: (BuildContext context) {
-        return Wrap(
-          children: <Widget>[
-            ListTile(
-              title: Text(
-                title,
-                style: TextStyle(
-                  fontSize: titleTextSize,
-                ),
-              ),
+      String closeButtonText) {
+    return Wrap(
+      children: <Widget>[
+        ListTile(
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: titleTextSize,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _generateIconButtonWithText(context, selectImageIcon, iconSize,
-                    iconTextSize, ImageSource.gallery, selectImageText),
-                SizedBox(
-                  width: spaceBetweenIcons,
-                ),
-                _generateIconButtonWithText(context, makePhotoIcon, iconSize,
-                    iconTextSize, ImageSource.camera, makePhotoText),
-              ],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _generateIconButtonWithText(context, selectImageIcon, iconSize,
+                iconTextSize, ImageSource.gallery, selectImageText),
+            SizedBox(
+              width: spaceBetweenIcons,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 300,
-                  height: 40,
-                  child: ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(closeButtonText)),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 60,
-            ),
+            _generateIconButtonWithText(context, makePhotoIcon, iconSize,
+                iconTextSize, ImageSource.camera, makePhotoText),
           ],
-        );
-      },
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 300,
+              height: 40,
+              child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(closeButtonText)),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 60,
+        ),
+      ],
     );
   }
 
@@ -94,7 +89,10 @@ class ImagePickerUI {
           key: Key(bottomText),
           icon: Icon(icon),
           iconSize: iconSize,
-          onPressed: () => _imagePickerService.pickImage(imageSource, context),
+          onPressed: () async {
+            var image = await _imagePickerService.pickImage(imageSource);
+            Navigator.of(context).pop(image);
+          },
         ),
         Text(
           bottomText,
