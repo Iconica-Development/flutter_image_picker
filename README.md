@@ -29,10 +29,11 @@ You can add optional parameters to the `showImagePickerDialog(context)` function
 |  selectImageText  | The text that is shown underneath the Select Image icon in the Image Picker Dialog |
 |  closeButtonText  | The text that is visible on the button that is shown at the bottom of the Image Picker Dialog that closes the dialog |
 
+The `showImagePickerDialog(context)` function returns an `Uint8List` as value which you can use in your application.
+
 ## Issues & Feedback
 
-Please file an [issue](https://github.com/Iconica-Development/flutter_image_picker/issues) to send feedback or report a bug,  
-If you want to ask a question or suggest an idea then you can [open an discussion](https://github.com/Iconica-Development/flutter_image_picker/discussions).  
+Please file an [issue](https://github.com/Iconica-Development/flutter_image_picker/issues) to send feedback or report a bug.
 Thank you!
 
 ## Contributing
