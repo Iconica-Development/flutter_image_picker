@@ -91,6 +91,7 @@ class _ImagePickerExampleHomePageState
   /// The most important part is the [ImagePicker] call.
   /// You can add a custom [ImagePickerTheme] to the [ImagePicker] if you want to change some of the UI.
   /// An example on how to do that is: ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")).
+  /// As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")))`
   /// Check the README for all possible parameters you can add in the [ImagePickerTheme].
   /// This function saves the image in a variable and if it's different than the current image it will get displayed in the application.
   /// When the same image is chosen there will be a snackbar popping up to let you know it's already being displayed.

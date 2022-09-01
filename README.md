@@ -16,7 +16,8 @@ To use this package, add `flutter_image_picker` as a [dependency in your pubspec
 See the [Example Code](example/lib/main.dart) for an example on how to use this package.
 
 You can add an optional `ImagePickerTheme()` to the `ImagePicker()` to change the layout of the Image Picker Dialog. You can add the following parameters to the `ImagePickerTheme`:
-An example on how to add a parameter to the `ImagePickerTheme()` is: `ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker"))`
+An example on how to add a parameter to the `ImagePickerTheme()` is: `ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker"))`.
+As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")))`
 
 |     Parameter     |  Explaination  |
 |-------------------|----------------|
