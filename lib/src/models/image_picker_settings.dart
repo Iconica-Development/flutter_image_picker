@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Default values for all the possible optional parameters to be included in the function call when opening the Image Picker Dialog.
+/// When the function call has no optional parameters included these values will be used.
 class ImagePickerDefaultParameters {
   static const String title = "Upload Image";
   static const double titleTextSize = 20;
