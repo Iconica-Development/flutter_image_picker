@@ -5,12 +5,14 @@ import 'package:image_picker/image_picker.dart';
 import '../models/image_picker_theme.dart';
 
 class ImagePicker extends StatelessWidget {
-  ImagePicker({Key? key, this.imagePickerTheme = const ImagePickerTheme()})
+  const ImagePicker(
+      {Key? key,
+      this.imagePickerTheme = const ImagePickerTheme(),
+      this.imagePickerService})
       : super(key: key);
 
   final ImagePickerTheme imagePickerTheme;
-
-  final ImagePickerService _imagePickerService = ImagePickerService();
+  final ImagePickerService? imagePickerService;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,8 @@ class ImagePicker extends StatelessWidget {
           icon: Icon(icon),
           iconSize: imagePickerTheme.iconSize,
           onPressed: () async {
-            var image = await _imagePickerService.pickImage(imageSource);
+            var image = await (imagePickerService ?? ImagePickerService())
+                .pickImage(imageSource);
             Navigator.of(context).pop(image);
           },
         ),
