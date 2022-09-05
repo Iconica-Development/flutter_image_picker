@@ -86,9 +86,10 @@ class ImagePicker extends StatelessWidget {
           icon: Icon(icon),
           iconSize: imagePickerTheme.iconSize,
           onPressed: () async {
+            final navigator = Navigator.of(context);
             var image = await (imagePickerService ?? ImagePickerService())
                 .pickImage(imageSource);
-            Navigator.of(context).pop(image);
+            navigator.pop(image);
           },
         ),
         Text(

@@ -97,7 +97,8 @@ class _ImagePickerExampleHomePageState
   /// When the same image is chosen there will be a snackbar popping up to let you know it's already being displayed.
   void pickImage() async {
     Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
-        context: context, builder: (BuildContext context) => ImagePicker());
+        context: context,
+        builder: (BuildContext context) => const ImagePicker());
     if (imageInBytes != null) {
       if (!listEquals(image, imageInBytes)) {
         setState(() {
