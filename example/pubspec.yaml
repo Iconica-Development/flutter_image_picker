@@ -1,5 +1,6 @@
 name: flutter_image_picker_example
 description: A new Flutter project.
+homepage: https://github.com/Iconica-Development/flutter_image_picker
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
