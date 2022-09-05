@@ -22,7 +22,8 @@ class ImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
+    return SingleChildScrollView(
+        child: Wrap(
       children: <Widget>[
         ListTile(
           title: Text(
@@ -68,7 +69,7 @@ class ImagePicker extends StatelessWidget {
           height: 60,
         ),
       ],
-    );
+    ));
   }
 
   /// The [_generateIconButtonWithText] function returns a column that includes an [IconButton] and [Text].
