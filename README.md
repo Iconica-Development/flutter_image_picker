@@ -1,39 +1,48 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
 # Flutter Image Picker
 Flutter Image Picker is a package you can use to implement an Image Picker in your Flutter app.
 
+![Gif](example/gif/ImagePickerGif.gif)
+
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+With the Flutter Image Picker you can select an existing picture from the gallery of your device or make a picture with the camera to use in your app. This package is made for Android, iOS and Windows.
 
-## Getting started
+## Setup
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, add `flutter_image_picker` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/platform-integration/platform-channels).
 
-## Usage
+## How To Use
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+See the [Example Code](example/lib/main.dart) for an example on how to use this package.
 
-```dart
-const like = 'sample';
-```
+You can add an optional `ImagePickerTheme()` to the `ImagePicker()` to change the layout of the Image Picker Dialog. You can add the following parameters to the `ImagePickerTheme`:
+An example on how to add a parameter to the `ImagePickerTheme()` is: `ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker"))`.
+As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")))`
 
-## Additional information
+|     Parameter     |  Explaination  |
+|-------------------|----------------|
+|       title       | The title displayed at the top of the Image Picker Dialog. |
+|   titleTextSize   | The font size of the title mentioned above. |
+|     iconSize      | The size of the icons that are visible in the Image Picker Dialog. |
+|   iconTextSize    | The font size of the text underneath the icon buttons. |
+| spaceBetweenIcons | The size of the space between the two icons in the Image Picker Dialog. |
+|   makePhotoIcon   | The icon that is displayed for the 'Make Photo' functionality of the Image Picker Dialog. |
+|   makePhotoText   | The text that is displayed underneath the 'Make Photo' icon. |
+|  selectImageIcon  | The icon that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog. |
+|  selectImageText  | The text that is displayed underneath the 'Select Image From Gallery' icon. |
+|  closeButtonText  | The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonWidth  | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonHeight  | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+
+## Issues
+
+Please file any issues, bugs or feature request as an issue on our [GitHub](https://github.com/Iconica-Development/flutter_image_picker/pulls) page. Commercial support is available if you need help with integration with your app or services. You can contact us at [support@iconica.nl](mailto:support@iconica.nl).
+
+## Want to contribute
+
+If you would like to contribute to the plugin (e.g. by improving the documentation, solving a bug or adding a cool new feature), please carefully review our [contribution guide](../CONTRIBUTING.md) and send us your [pull request](URL TO PULL REQUEST TAB IN REPO).
+
+## Author
+
+This `flutter-image-picker` for Flutter is developed by [Iconica](https://iconica.nl). You can contact us at <support@iconica.nl>

@@ -1,7 +1,3 @@
-## 0.0.1
+## 0.0.1 - September 5th 2022
 
-* Initial commit of the package
-
-## 0.0.2
-
-* Added more folders
+- Initial release
