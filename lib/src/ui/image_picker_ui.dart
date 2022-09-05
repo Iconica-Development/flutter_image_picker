@@ -4,6 +4,9 @@ import 'package:image_picker/image_picker.dart';
 
 import '../models/image_picker_theme.dart';
 
+/// The Image Picker class generates the Image Picker Widget which can be displayed in your application. If you call the class you can give it 2 optional variables:
+/// The first one is the [ImagePickerTheme] which can be used to change the UI of the widget.
+/// The second one is your own implementation of the ImagePickerService. Which can be used in testing for example.
 class ImagePicker extends StatelessWidget {
   const ImagePicker(
       {Key? key,
@@ -11,7 +14,10 @@ class ImagePicker extends StatelessWidget {
       this.imagePickerService})
       : super(key: key);
 
+  /// ImagePickerTheme can be used to change the UI of the Image Picker Widget to change the text/icons to your liking.
   final ImagePickerTheme imagePickerTheme;
+
+  /// The ImagePickerService can be used if you want to use your own implementation of the Image Service if you want to use it for testing or add more features. If null the current implementation will be used.
   final ImagePickerService? imagePickerService;
 
   @override
