@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_picker/src/services/image_picker_service.dart';
+import 'package:flutter_image_picker/src/services/flutter_image_picker_service.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../models/image_picker_theme.dart';
+import '../models/flutter_image_picker_theme.dart';
 
 /// The Image Picker class generates the Image Picker Widget which can be displayed in your application. If you call the class you can give it 2 optional variables:
 /// The first one is the [ImagePickerTheme] which can be used to change the UI of the widget.

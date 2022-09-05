@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_image_picker/image_picker.dart' as iconica_image_picker;
+import 'package:flutter_image_picker/flutter_image_picker.dart'
+    as iconica_image_picker;
 import 'package:image_picker/image_picker.dart' as image_picker;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
