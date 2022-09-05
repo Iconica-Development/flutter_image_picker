@@ -5,13 +5,13 @@ Flutter Image Picker is a package you can use to implement an Image Picker in yo
 
 ## Features
 
-With the Flutter Image Picker you can select an existing picture from the gallery or make a picture with the camera to use in your app. 
+With the Flutter Image Picker you can select an existing picture from the gallery of your device or make a picture with the camera to use in your app. This package is made for Android, iOS and Windows.
 
-## Usage
+## Setup
 
 To use this package, add `flutter_image_picker` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/platform-integration/platform-channels).
 
-## Example
+## How To Use
 
 See the [Example Code](example/lib/main.dart) for an example on how to use this package.
 
@@ -34,11 +34,15 @@ As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePi
 |  closeButtonWidth  | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 |  closeButtonHeight  | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 
-## Issues & Feedback
 
-Please file an [issue](https://github.com/Iconica-Development/flutter_image_picker/issues) to send feedback or report a bug.
-Thank you!
+## Issues
 
-## Contributing
+Please file any issues, bugs or feature request as an issue on our [GitHub](https://github.com/Iconica-Development/flutter_image_picker/pulls) page. Commercial support is available if you need help with integration with your app or services. You can contact us at [support@iconica.nl](mailto:support@iconica.nl).
 
-Every pull request is welcome.
+## Want to contribute
+
+If you would like to contribute to the plugin (e.g. by improving the documentation, solving a bug or adding a cool new feature), please carefully review our [contribution guide](../CONTRIBUTING.md) and send us your [pull request](URL TO PULL REQUEST TAB IN REPO).
+
+## Author
+
+This `flutter-image-picker` for Flutter is developed by [Iconica](https://iconica.nl). You can contact us at <support@iconica.nl>

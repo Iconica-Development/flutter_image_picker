@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart' as image_picker;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../mocks/image_picker_service_mock.dart';
+import 'mocks/image_picker_service_mock.dart';
 
 void main() {
   Uint8List cameraImage = Uint8List(10);
