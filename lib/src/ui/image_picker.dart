@@ -29,7 +29,9 @@ class ImagePicker extends StatelessWidget {
           title: Text(
             imagePickerTheme.title,
             style: TextStyle(
+              fontFamily: imagePickerTheme.font,
               fontSize: imagePickerTheme.titleTextSize,
+              color: imagePickerTheme.textColor,
             ),
           ),
         ),
@@ -60,8 +62,16 @@ class ImagePicker extends StatelessWidget {
               width: imagePickerTheme.closeButtonWidth,
               height: imagePickerTheme.closeButtonHeight,
               child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          imagePickerTheme.closeButtonBackgroundColor),
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text(imagePickerTheme.closeButtonText)),
+                  child: Text(imagePickerTheme.closeButtonText,
+                      style: TextStyle(
+                        fontFamily: imagePickerTheme.font,
+                        fontSize: imagePickerTheme.closeButtonTextSize,
+                        color: imagePickerTheme.closeButtonTextColor,
+                      ))),
             )
           ],
         ),
@@ -92,6 +102,7 @@ class ImagePicker extends StatelessWidget {
           key: Key(bottomText),
           icon: Icon(icon),
           iconSize: imagePickerTheme.iconSize,
+          color: imagePickerTheme.iconColor,
           onPressed: () async {
             final navigator = Navigator.of(context);
             var image = await (imagePickerService ?? ImagePickerService())
@@ -101,7 +112,10 @@ class ImagePicker extends StatelessWidget {
         ),
         Text(
           bottomText,
-          style: TextStyle(fontSize: imagePickerTheme.iconTextSize),
+          style: TextStyle(
+              fontFamily: imagePickerTheme.font,
+              fontSize: imagePickerTheme.iconTextSize,
+              color: imagePickerTheme.textColor),
         ),
         const SizedBox(
           height: 20,

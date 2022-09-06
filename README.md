@@ -21,7 +21,10 @@ As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePi
 
 |     Parameter     |  Explaination  |
 |-------------------|----------------|
+|       font        | The font that is being used in the Image Picker Dialog. |
 |       title       | The title displayed at the top of the Image Picker Dialog. |
+|     textColor     | The color of the text that is displayed in the Image Picker Dialog. |
+|     iconColor     | The color of the icons that are displayed in the Image Picker Dialog. |
 |   titleTextSize   | The font size of the title mentioned above. |
 |     iconSize      | The size of the icons that are visible in the Image Picker Dialog. |
 |   iconTextSize    | The font size of the text underneath the icon buttons. |
@@ -31,8 +34,11 @@ As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePi
 |  selectImageIcon  | The icon that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog. |
 |  selectImageText  | The text that is displayed underneath the 'Select Image From Gallery' icon. |
 |  closeButtonText  | The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonTextSize  | The size of the text that is being displayed on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonTextColor  | The color of the text that is being displayed on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 |  closeButtonWidth  | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 |  closeButtonHeight  | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+|  closeButtonBackgroundColor  | The background color of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
 
 
 ## Issues

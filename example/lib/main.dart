@@ -109,6 +109,7 @@ class ImagePickerExampleHomePageState
   void pickImage() async {
     Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
         context: context,
+        backgroundColor: Colors.white,
         builder: (BuildContext context) => const ImagePicker());
     if (imageInBytes != null) {
       if (!listEquals(ref.read(imageProvider), imageInBytes)) {
