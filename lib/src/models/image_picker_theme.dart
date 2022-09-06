@@ -3,25 +3,41 @@ import 'package:flutter/material.dart';
 class ImagePickerTheme {
   /// The [ImagePickerTheme] is used to style the [ImagePicker].
 
-  const ImagePickerTheme(
-      {this.title = "Upload Image",
-      this.titleTextSize = 20,
-      this.iconSize = 125,
-      this.iconTextSize = 15,
-      this.spaceBetweenIcons = 30,
-      this.makePhotoIcon = Icons.camera_alt_rounded,
-      this.makePhotoText = "Take a Picture",
-      this.selectImageIcon = Icons.image,
-      this.selectImageText = "Select File",
-      this.closeButtonText = "Close",
-      this.closeButtonWidth = 300,
-      this.closeButtonHeight = 40});
+  const ImagePickerTheme({
+    this.font = "Roboto",
+    this.title = "Upload Image",
+    this.titleTextSize = 20,
+    this.textColor = Colors.black,
+    this.iconColor = Colors.black,
+    this.iconSize = 125,
+    this.iconTextSize = 15,
+    this.spaceBetweenIcons = 30,
+    this.makePhotoIcon = Icons.camera_alt_rounded,
+    this.makePhotoText = "Take a Picture",
+    this.selectImageIcon = Icons.image,
+    this.selectImageText = "Select File",
+    this.closeButtonText = "Close",
+    this.closeButtonTextSize = 15,
+    this.closeButtonTextColor = Colors.white,
+    this.closeButtonWidth = 300,
+    this.closeButtonHeight = 40,
+    this.closeButtonBackgroundColor = Colors.black,
+  });
+
+  /// The font that's used in the Image Picker
+  final String font;
 
   /// The title displayed at the top of the Image Picker Dialog.
   final String title;
 
   /// The font size of the title mentioned above.
   final double titleTextSize;
+
+  /// The color of the icons
+  final Color iconColor;
+
+  /// The color of the text in the Image Picker Dialog
+  final Color textColor;
 
   /// The size of the icons that are visible in the Image Picker Dialog.
   final double iconSize;
@@ -47,9 +63,18 @@ class ImagePickerTheme {
   /// The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog.
   final String closeButtonText;
 
+  /// The fontsize of the text of the close button of the Image Picker Dialog.
+  final double closeButtonTextSize;
+
+  /// The color of the text of the close button of the Image Picker Dialog.
+  final Color closeButtonTextColor;
+
   /// The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog.
   final double closeButtonWidth;
 
   /// The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog.
   final double closeButtonHeight;
+
+  /// The color of the close button of the Image Picker Dialog.
+  final Color closeButtonBackgroundColor;
 }
