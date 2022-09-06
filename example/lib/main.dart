@@ -1,16 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_picker/flutter_image_picker.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final imageProvider = StateProvider.autoDispose<Uint8List?>((ref) {
+  return null;
+});
 
 void main() {
-  runApp(const ImagePickerExample());
+  runApp(const ProviderScope(child: ImagePickerExample()));
 }
 
-class ImagePickerExample extends StatelessWidget {
+class ImagePickerExample extends ConsumerWidget {
   const ImagePickerExample({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Flutter Image Picker Example',
       theme: ThemeData(
@@ -22,20 +27,19 @@ class ImagePickerExample extends StatelessWidget {
   }
 }
 
-class ImagePickerExampleHomePage extends StatefulWidget {
+class ImagePickerExampleHomePage extends ConsumerStatefulWidget {
   const ImagePickerExampleHomePage({Key? key, required this.title})
       : super(key: key);
 
   final String title;
 
   @override
-  State<ImagePickerExampleHomePage> createState() =>
-      _ImagePickerExampleHomePageState();
+  ImagePickerExampleHomePageState createState() =>
+      ImagePickerExampleHomePageState();
 }
 
-class _ImagePickerExampleHomePageState
-    extends State<ImagePickerExampleHomePage> {
-  Uint8List? image;
+class ImagePickerExampleHomePageState
+    extends ConsumerState<ImagePickerExampleHomePage> {
   final double whiteSpace = 20;
   final double imageWidth = 300;
   final String placeholder = 'assets/images/placeholder.png';
@@ -44,9 +48,18 @@ class _ImagePickerExampleHomePageState
 
   @override
   Widget build(BuildContext context) {
+    final imageWatcher = ref.watch(imageProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                ref.invalidate(imageProvider);
+              },
+              icon: const Icon(Icons.delete))
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -54,7 +67,7 @@ class _ImagePickerExampleHomePageState
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Column(children: [
-                if (image == null) ...[
+                if (imageWatcher == null) ...[
                   Image.asset(
                     placeholder,
                     width: imageWidth,
@@ -62,7 +75,7 @@ class _ImagePickerExampleHomePageState
                   )
                 ] else ...[
                   Image.memory(
-                    image!,
+                    imageWatcher,
                     width: imageWidth,
                     height: imageWidth,
                   )
@@ -98,10 +111,8 @@ class _ImagePickerExampleHomePageState
         context: context,
         builder: (BuildContext context) => const ImagePicker());
     if (imageInBytes != null) {
-      if (!listEquals(image, imageInBytes)) {
-        setState(() {
-          image = imageInBytes;
-        });
+      if (!listEquals(ref.read(imageProvider), imageInBytes)) {
+        ref.read(imageProvider.state).state = imageInBytes;
       } else {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
