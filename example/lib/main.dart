@@ -1,11 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_picker/flutter_image_picker.dart';
+import 'package:flutter_image_picker_example/button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final imageProvider = StateProvider.autoDispose<Uint8List?>((ref) {
-  return null;
+final imageProvider =
+    StateNotifierProvider.autoDispose<ImageNotifier, Uint8List?>((ref) {
+  return ImageNotifier();
 });
+
+class ImageNotifier extends StateNotifier<Uint8List?> {
+  ImageNotifier() : super(null);
+
+  Uint8List? image;
+
+  void changeImage(Uint8List newImage) {
+    state = image = newImage;
+  }
+
+  void cleanImage() {
+    state = image = null;
+  }
+}
 
 void main() {
   runApp(const ProviderScope(child: ImagePickerExample()));
@@ -66,7 +82,8 @@ class ImagePickerExampleHomePageState
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Column(children: [
+              ProviderScope(
+                  child: Column(children: [
                 if (imageWatcher == null) ...[
                   Image.asset(
                     placeholder,
@@ -80,7 +97,7 @@ class ImagePickerExampleHomePageState
                     height: imageWidth,
                   )
                 ]
-              ]),
+              ])),
               SizedBox(height: whiteSpace),
               const Text(
                 'Pick an image or make a photo!',
@@ -104,6 +121,7 @@ class ImagePickerExampleHomePageState
   /// An example on how to do that is: ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")).
   /// As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")))`
   /// Check the README for all possible parameters you can add in the [ImagePickerTheme].
+  /// You can also add a custom Button as a Widget to the Image Picker Dialog.
   /// This function saves the image in a variable and if it's different than the current image it will get displayed in the application.
   /// When the same image is chosen there will be a snackbar popping up to let you know it's already being displayed.
   void pickImage() async {
@@ -113,7 +131,7 @@ class ImagePickerExampleHomePageState
         builder: (BuildContext context) => const ImagePicker());
     if (imageInBytes != null) {
       if (!listEquals(ref.read(imageProvider), imageInBytes)) {
-        ref.read(imageProvider.state).state = imageInBytes;
+        ref.read(imageProvider.notifier).changeImage(imageInBytes);
       } else {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
@@ -121,5 +139,6 @@ class ImagePickerExampleHomePageState
         );
       }
     }
+    imageInBytes = null;
   }
 }

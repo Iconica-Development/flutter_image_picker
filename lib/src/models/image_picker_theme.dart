@@ -7,6 +7,9 @@ class ImagePickerTheme {
     this.font = "Roboto",
     this.title = "Upload Image",
     this.titleTextSize = 20,
+    this.titleColor = Colors.black,
+    this.titleBackgroundColor = Colors.white,
+    this.titleAlignment = TextAlign.left,
     this.textColor = Colors.black,
     this.iconColor = Colors.black,
     this.iconSize = 125,
@@ -32,6 +35,15 @@ class ImagePickerTheme {
 
   /// The font size of the title mentioned above.
   final double titleTextSize;
+
+  /// The color of the title text.
+  final Color titleColor;
+
+  /// The color of the title background.
+  final Color titleBackgroundColor;
+
+  /// The alignment of the title text.
+  final TextAlign titleAlignment;
 
   /// The color of the icons
   final Color iconColor;

@@ -4,18 +4,23 @@ import 'package:image_picker/image_picker.dart';
 
 import '../models/image_picker_theme.dart';
 
-/// The Image Picker class generates the Image Picker Widget which can be displayed in your application. If you call the class you can give it 2 optional variables:
+/// The Image Picker class generates the Image Picker Widget which can be displayed in your application. If you call the class you can give it 3 optional variables:
 /// The first one is the [ImagePickerTheme] which can be used to change the UI of the widget.
 /// The second one is your own implementation of the ImagePickerService. Which can be used in testing for example.
+/// The third one is a custom Button widget.
 class ImagePicker extends StatelessWidget {
   const ImagePicker(
       {Key? key,
       this.imagePickerTheme = const ImagePickerTheme(),
-      this.imagePickerService})
+      this.imagePickerService,
+      this.customButton})
       : super(key: key);
 
   /// ImagePickerTheme can be used to change the UI of the Image Picker Widget to change the text/icons to your liking.
   final ImagePickerTheme imagePickerTheme;
+
+  /// The Image Picker Dialog can have a custom button if you want to.
+  final StatelessWidget? customButton;
 
   /// The ImagePickerService can be used if you want to use your own implementation of the Image Service if you want to use it for testing or add more features. If null the current implementation will be used.
   final ImagePickerService? imagePickerService;
@@ -26,12 +31,14 @@ class ImagePicker extends StatelessWidget {
         child: Wrap(
       children: <Widget>[
         ListTile(
+          tileColor: imagePickerTheme.titleBackgroundColor,
           title: Text(
+            textAlign: imagePickerTheme.titleAlignment,
             imagePickerTheme.title,
             style: TextStyle(
               fontFamily: imagePickerTheme.font,
               fontSize: imagePickerTheme.titleTextSize,
-              color: imagePickerTheme.textColor,
+              color: imagePickerTheme.titleColor,
             ),
           ),
         ),
@@ -61,22 +68,23 @@ class ImagePicker extends StatelessWidget {
             SizedBox(
               width: imagePickerTheme.closeButtonWidth,
               height: imagePickerTheme.closeButtonHeight,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          imagePickerTheme.closeButtonBackgroundColor),
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text(imagePickerTheme.closeButtonText,
-                      style: TextStyle(
-                        fontFamily: imagePickerTheme.font,
-                        fontSize: imagePickerTheme.closeButtonTextSize,
-                        color: imagePickerTheme.closeButtonTextColor,
-                      ))),
+              child: customButton ??
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              imagePickerTheme.closeButtonBackgroundColor),
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(imagePickerTheme.closeButtonText,
+                          style: TextStyle(
+                            fontFamily: imagePickerTheme.font,
+                            fontSize: imagePickerTheme.closeButtonTextSize,
+                            color: imagePickerTheme.closeButtonTextColor,
+                          ))),
             )
           ],
         ),
-        const SizedBox(
-          height: 60,
+        SizedBox(
+          height: (20 + imagePickerTheme.closeButtonHeight),
         ),
       ],
     ));

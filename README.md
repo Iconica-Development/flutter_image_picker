@@ -23,9 +23,12 @@ As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePi
 |-------------------|----------------|
 |       font        | The font that is being used in the Image Picker Dialog. |
 |       title       | The title displayed at the top of the Image Picker Dialog. |
+|   titleTextSize   | The font size of the title mentioned above. |
+|     titleColor    | The color of the title text. |
+| titleBackgroundColor | The color of the title background. |
+|   titleAlignment  | The alignment of the title text. |
 |     textColor     | The color of the text that is displayed in the Image Picker Dialog. |
 |     iconColor     | The color of the icons that are displayed in the Image Picker Dialog. |
-|   titleTextSize   | The font size of the title mentioned above. |
 |     iconSize      | The size of the icons that are visible in the Image Picker Dialog. |
 |   iconTextSize    | The font size of the text underneath the icon buttons. |
 | spaceBetweenIcons | The size of the space between the two icons in the Image Picker Dialog. |
