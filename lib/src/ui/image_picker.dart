@@ -28,7 +28,7 @@ class ImagePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Wrap(
+        child: Column(
       children: <Widget>[
         ListTile(
           tileColor: imagePickerTheme.titleBackgroundColor,
@@ -41,6 +41,9 @@ class ImagePicker extends StatelessWidget {
               color: imagePickerTheme.titleColor,
             ),
           ),
+        ),
+        const SizedBox(
+          height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,6 +64,9 @@ class ImagePicker extends StatelessWidget {
                 ImageSource.camera,
                 imagePickerTheme.makePhotoText),
           ],
+        ),
+        const SizedBox(
+          height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,8 +89,8 @@ class ImagePicker extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(
-          height: (20 + imagePickerTheme.closeButtonHeight),
+        const SizedBox(
+          height: (30),
         ),
       ],
     ));
