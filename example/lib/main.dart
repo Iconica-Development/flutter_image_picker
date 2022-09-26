@@ -127,9 +127,7 @@ class ImagePickerExampleHomePageState
     Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
         context: context,
         backgroundColor: Colors.white,
-        builder: (BuildContext context) => const ImagePicker(
-              imagePickerTheme: ImagePickerTheme(),
-            ));
+        builder: (BuildContext context) => const ImagePicker());
     if (imageInBytes != null) {
       if (!listEquals(ref.read(imageProvider), imageInBytes)) {
         ref.read(imageProvider.notifier).changeImage(imageInBytes);
