@@ -50,8 +50,9 @@ class ImagePicker extends StatelessWidget {
           children: [
             _generateIconButtonWithText(
                 context,
-                imagePickerTheme,
                 imagePickerTheme.selectImageIcon,
+                imagePickerTheme,
+                Icons.image,
                 ImageSource.gallery,
                 imagePickerTheme.selectImageText),
             SizedBox(
@@ -59,8 +60,9 @@ class ImagePicker extends StatelessWidget {
             ),
             _generateIconButtonWithText(
                 context,
-                imagePickerTheme,
                 imagePickerTheme.makePhotoIcon,
+                imagePickerTheme,
+                Icons.camera_alt_rounded,
                 ImageSource.camera,
                 imagePickerTheme.makePhotoText),
           ],
@@ -105,6 +107,7 @@ class ImagePicker extends StatelessWidget {
   /// [bottomText] The text that's displayed underneath the icon.
   Column _generateIconButtonWithText(
       BuildContext context,
+      Widget? customIcon,
       ImagePickerTheme imagePickerTheme,
       IconData icon,
       ImageSource imageSource,
@@ -112,17 +115,20 @@ class ImagePicker extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        IconButton(
+        InkWell(
           key: Key(bottomText),
-          icon: Icon(icon),
-          iconSize: imagePickerTheme.iconSize,
-          color: imagePickerTheme.iconColor,
-          onPressed: () async {
+          onTap: () async {
             final navigator = Navigator.of(context);
             var image = await (imagePickerService ?? ImagePickerService())
                 .pickImage(imageSource);
             navigator.pop(image);
           },
+          child: customIcon ??
+              Icon(
+                icon,
+                size: imagePickerTheme.iconSize,
+                color: imagePickerTheme.iconColor,
+              ),
         ),
         Text(
           bottomText,

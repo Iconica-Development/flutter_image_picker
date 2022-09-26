@@ -14,17 +14,20 @@ void main() {
   Uint8List galleryImage = Uint8List(44);
 
   testWidgets('Image Picker Shows With Normal Theme', (tester) async {
-    await tester.pumpWidget(const MaterialApp(
-        home: Material(child: iconica_image_picker.ImagePicker())));
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Material(
+          child: iconica_image_picker.ImagePicker(),
+        ),
+      ),
+    );
 
     final titleFinder =
         find.text(const iconica_image_picker.ImagePickerTheme().title);
-    final makePhotoIconFinder = find
-        .byIcon(const iconica_image_picker.ImagePickerTheme().makePhotoIcon);
+    final makePhotoIconFinder = find.byIcon(Icons.camera_alt_rounded);
     final makePhotoTextFinder =
         find.text(const iconica_image_picker.ImagePickerTheme().makePhotoText);
-    final selectImageIconFinder = find
-        .byIcon(const iconica_image_picker.ImagePickerTheme().selectImageIcon);
+    final selectImageIconFinder = find.byIcon(Icons.image);
     final selectImageTextFinder = find
         .text(const iconica_image_picker.ImagePickerTheme().selectImageText);
     final closebuttonTextFinder = find
@@ -84,9 +87,17 @@ void main() {
 
   testWidgets('Image Picker Shows With Custom Theme', (tester) async {
     String title = "title";
-    IconData makePhotoIcon = Icons.motorcycle;
+    Widget makePhotoIcon = Container(
+      height: 125,
+      width: 125,
+      color: Colors.red,
+    );
     String makePhotoText = "taaaake image";
-    IconData selectImageIcon = Icons.chevron_left;
+    Widget selectImageIcon = Container(
+      height: 125,
+      width: 125,
+      color: Colors.blue,
+    );
     String selectImageText = "seleeeeect image";
     String closeButtonText = "Close Dialog!";
 
@@ -102,9 +113,9 @@ void main() {
                     closeButtonText: closeButtonText)))));
 
     final titleFinder = find.text(title);
-    final makePhotoIconFinder = find.byIcon(makePhotoIcon);
+    final makePhotoIconFinder = find.byWidget(makePhotoIcon);
     final makePhotoTextFinder = find.text(makePhotoText);
-    final selectImageIconFinder = find.byIcon(selectImageIcon);
+    final selectImageIconFinder = find.byWidget(selectImageIcon);
     final selectImageTextFinder = find.text(selectImageText);
     final closebuttonTextFinder = find.text(closeButtonText);
 
