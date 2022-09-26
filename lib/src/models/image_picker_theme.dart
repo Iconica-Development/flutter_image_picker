@@ -15,9 +15,9 @@ class ImagePickerTheme {
     this.iconSize = 125,
     this.iconTextSize = 15,
     this.spaceBetweenIcons = 30,
-    this.makePhotoIcon = Icons.camera_alt_rounded,
+    this.makePhotoIcon,
     this.makePhotoText = "Take a Picture",
-    this.selectImageIcon = Icons.image,
+    this.selectImageIcon,
     this.selectImageText = "Select File",
     this.closeButtonText = "Close",
     this.closeButtonTextSize = 15,
@@ -61,13 +61,13 @@ class ImagePickerTheme {
   final double spaceBetweenIcons;
 
   /// The icon that is displayed for the 'Make Photo' functionality of the Image Picker Dialog.
-  final IconData makePhotoIcon;
+  final Widget? makePhotoIcon;
 
   /// The text that is displayed underneath the 'Make Photo' icon.
   final String makePhotoText;
 
   /// The icon that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog.
-  final IconData selectImageIcon;
+  final Widget? selectImageIcon;
 
   /// The text that is displayed underneath the 'Select Image From Gallery' icon.
   final String selectImageText;

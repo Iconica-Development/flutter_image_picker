@@ -9,9 +9,14 @@
 ## 0.0.3 - September 6th 2022
 
 - More customization options for the Image Picker Dialog added:
-    - Font
-    - Text color
-    - Icon color
-    - Close Button background color
-    - Close Button text color
-    - Close Button text size
+
+  - Font
+  - Text color
+  - Icon color
+  - Close Button background color
+  - Close Button text color
+  - Close Button text size
+
+## 1.0.0 - September 26th 2022
+
+- Icons can be changed by Widgets instead of IconData.

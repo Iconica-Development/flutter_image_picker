@@ -1,4 +1,5 @@
 # Flutter Image Picker
+
 Flutter Image Picker is a package you can use to implement an Image Picker in your Flutter app.
 
 ![Gif](example/gif/ImagePickerGif.gif)
@@ -19,30 +20,29 @@ You can add an optional `ImagePickerTheme()` to the `ImagePicker()` to change th
 An example on how to add a parameter to the `ImagePickerTheme()` is: `ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker"))`.
 As a whole you get `ImagePicker(ImagePickerTheme(imagePickerTheme: const ImagePickerTheme(title: "Image Picker")))`
 
-|     Parameter     |  Explaination  |
-|-------------------|----------------|
-|       font        | The font that is being used in the Image Picker Dialog. |
-|       title       | The title displayed at the top of the Image Picker Dialog. |
-|   titleTextSize   | The font size of the title mentioned above. |
-|     titleColor    | The color of the title text. |
-| titleBackgroundColor | The color of the title background. |
-|   titleAlignment  | The alignment of the title text. |
-|     textColor     | The color of the text that is displayed in the Image Picker Dialog. |
-|     iconColor     | The color of the icons that are displayed in the Image Picker Dialog. |
-|     iconSize      | The size of the icons that are visible in the Image Picker Dialog. |
-|   iconTextSize    | The font size of the text underneath the icon buttons. |
-| spaceBetweenIcons | The size of the space between the two icons in the Image Picker Dialog. |
-|   makePhotoIcon   | The icon that is displayed for the 'Make Photo' functionality of the Image Picker Dialog. |
-|   makePhotoText   | The text that is displayed underneath the 'Make Photo' icon. |
-|  selectImageIcon  | The icon that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog. |
-|  selectImageText  | The text that is displayed underneath the 'Select Image From Gallery' icon. |
-|  closeButtonText  | The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-|  closeButtonTextSize  | The size of the text that is being displayed on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-|  closeButtonTextColor  | The color of the text that is being displayed on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-|  closeButtonWidth  | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-|  closeButtonHeight  | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-|  closeButtonBackgroundColor  | The background color of the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
-
+| Parameter                  | Explaination                                                                                                         |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| font                       | The font that is being used in the Image Picker Dialog.                                                              |
+| title                      | The title displayed at the top of the Image Picker Dialog.                                                           |
+| titleTextSize              | The font size of the title mentioned above.                                                                          |
+| titleColor                 | The color of the title text.                                                                                         |
+| titleBackgroundColor       | The color of the title background.                                                                                   |
+| titleAlignment             | The alignment of the title text.                                                                                     |
+| textColor                  | The color of the text that is displayed in the Image Picker Dialog.                                                  |
+| iconColor                  | The color of the icons that are displayed in the Image Picker Dialog.                                                |
+| iconSize                   | The size of the icons that are visible in the Image Picker Dialog.                                                   |
+| iconTextSize               | The font size of the text underneath the icon buttons.                                                               |
+| spaceBetweenIcons          | The size of the space between the two icons in the Image Picker Dialog.                                              |
+| makePhotoIcon              | The widget that is displayed for the 'Make Photo' functionality of the Image Picker Dialog.                          |
+| makePhotoText              | The text that is displayed underneath the 'Make Photo' icon.                                                         |
+| selectImageIcon            | The widget that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog.           |
+| selectImageText            | The text that is displayed underneath the 'Select Image From Gallery' icon.                                          |
+| closeButtonText            | The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog.                        |
+| closeButtonTextSize        | The size of the text that is being displayed on the 'Close Dialog' button at the bottom of the Image Picker Dialog.  |
+| closeButtonTextColor       | The color of the text that is being displayed on the 'Close Dialog' button at the bottom of the Image Picker Dialog. |
+| closeButtonWidth           | The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog.                                     |
+| closeButtonHeight          | The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog.                                    |
+| closeButtonBackgroundColor | The background color of the 'Close Dialog' button at the bottom of the Image Picker Dialog.                          |
 
 ## Issues
 
