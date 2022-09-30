@@ -20,7 +20,7 @@ class ImagePicker extends StatelessWidget {
   final ImagePickerTheme imagePickerTheme;
 
   /// The Image Picker Dialog can have a custom button if you want to.
-  final StatelessWidget? customButton;
+  final Widget? customButton;
 
   /// The ImagePickerService can be used if you want to use your own implementation of the Image Service if you want to use it for testing or add more features. If null the current implementation will be used.
   final ImagePickerService? imagePickerService;
