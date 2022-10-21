@@ -9,12 +9,12 @@ import '../models/image_picker_theme.dart';
 /// The second one is your own implementation of the ImagePickerService. Which can be used in testing for example.
 /// The third one is a custom Button widget.
 class ImagePicker extends StatelessWidget {
-  const ImagePicker(
-      {Key? key,
-      this.imagePickerTheme = const ImagePickerTheme(),
-      this.imagePickerService,
-      this.customButton})
-      : super(key: key);
+  const ImagePicker({
+    this.imagePickerTheme = const ImagePickerTheme(),
+    this.imagePickerService,
+    this.customButton,
+    super.key,
+  });
 
   /// ImagePickerTheme can be used to change the UI of the Image Picker Widget to change the text/icons to your liking.
   final ImagePickerTheme imagePickerTheme;
@@ -119,8 +119,9 @@ class ImagePicker extends StatelessWidget {
           key: Key(bottomText),
           onTap: () async {
             final navigator = Navigator.of(context);
-            var image = await (imagePickerService ?? ImagePickerService())
-                .pickImage(imageSource);
+            var image =
+                await (imagePickerService ?? ImagePickerServiceDefault())
+                    .pickImage(imageSource);
             navigator.pop(image);
           },
           child: customIcon ??
