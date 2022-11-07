@@ -20,3 +20,7 @@
 ## 1.0.0 - September 26th 2022
 
 - Icons can be changed by Widgets instead of IconData.
+
+## 1.0.2 - Oktober 21st 2022
+
+- ImagePickerService can be correctly injected into the widget.
