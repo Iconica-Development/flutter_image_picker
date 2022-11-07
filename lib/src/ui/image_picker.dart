@@ -3,18 +3,18 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import 'package:flutter/material.dart';
-import 'package:flutter_image_picker/src/services/image_picker_service.dart';
+import 'package:flutter_image_picker/flutter_image_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../models/image_picker_theme.dart';
-
-/// The Image Picker class generates the Image Picker Widget which can be displayed in your application. If you call the class you can give it 3 optional variables:
+/// The Image Picker class generates the Image Picker Widget which can be displayed in your application. If you call the class you can give it 4 optional variables:
 /// The first one is the [ImagePickerTheme] which can be used to change the UI of the widget.
-/// The second one is your own implementation of the ImagePickerService. Which can be used in testing for example.
-/// The third one is a custom Button widget.
+/// The second one is the [ImagePickerConfig] which can be used to configure the behaviour of the image picker.
+/// The third one is your own implementation of the ImagePickerService. Which can be used in testing for example.
+/// The fourth one is a custom Button widget.
 class ImagePicker extends StatelessWidget {
   const ImagePicker({
     this.imagePickerTheme = const ImagePickerTheme(),
+    this.imagePickerConfig = const ImagePickerConfig(),
     this.imagePickerService,
     this.customButton,
     super.key,
@@ -22,6 +22,9 @@ class ImagePicker extends StatelessWidget {
 
   /// ImagePickerTheme can be used to change the UI of the Image Picker Widget to change the text/icons to your liking.
   final ImagePickerTheme imagePickerTheme;
+
+  /// ImagePickerConfig can be used to define the size and quality for the uploaded image.
+  final ImagePickerConfig imagePickerConfig;
 
   /// The Image Picker Dialog can have a custom button if you want to.
   final Widget? customButton;
@@ -32,74 +35,75 @@ class ImagePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Column(
-      children: <Widget>[
-        ListTile(
-          tileColor: imagePickerTheme.titleBackgroundColor,
-          title: Text(
-            textAlign: imagePickerTheme.titleAlignment,
-            imagePickerTheme.title,
-            style: TextStyle(
-              fontFamily: imagePickerTheme.font,
-              fontSize: imagePickerTheme.titleTextSize,
-              color: imagePickerTheme.titleColor,
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            tileColor: imagePickerTheme.titleBackgroundColor,
+            title: Text(
+              textAlign: imagePickerTheme.titleAlignment,
+              imagePickerTheme.title,
+              style: TextStyle(
+                fontFamily: imagePickerTheme.font,
+                fontSize: imagePickerTheme.titleTextSize,
+                color: imagePickerTheme.titleColor,
+              ),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _generateIconButtonWithText(
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _generateIconButtonWithText(
                 context,
                 imagePickerTheme.selectImageIcon,
                 imagePickerTheme,
                 Icons.image,
                 ImageSource.gallery,
-                imagePickerTheme.selectImageText),
-            SizedBox(
-              width: imagePickerTheme.spaceBetweenIcons,
-            ),
-            _generateIconButtonWithText(
+                imagePickerTheme.selectImageText,
+              ),
+              SizedBox(
+                width: imagePickerTheme.spaceBetweenIcons,
+              ),
+              _generateIconButtonWithText(
                 context,
                 imagePickerTheme.makePhotoIcon,
                 imagePickerTheme,
                 Icons.camera_alt_rounded,
                 ImageSource.camera,
-                imagePickerTheme.makePhotoText),
-          ],
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: imagePickerTheme.closeButtonWidth,
-              height: imagePickerTheme.closeButtonHeight,
-              child: customButton ??
-                  ElevatedButton(
+                imagePickerTheme.makePhotoText,
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: imagePickerTheme.closeButtonWidth,
+                height: imagePickerTheme.closeButtonHeight,
+                child: customButton ??
+                    ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              imagePickerTheme.closeButtonBackgroundColor),
+                        backgroundColor:
+                            imagePickerTheme.closeButtonBackgroundColor,
+                      ),
                       onPressed: () => Navigator.of(context).pop(),
-                      child: Text(imagePickerTheme.closeButtonText,
-                          style: TextStyle(
-                            fontFamily: imagePickerTheme.font,
-                            fontSize: imagePickerTheme.closeButtonTextSize,
-                            color: imagePickerTheme.closeButtonTextColor,
-                          ))),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: (30),
-        ),
-      ],
-    ));
+                      child: Text(
+                        imagePickerTheme.closeButtonText,
+                        style: TextStyle(
+                          fontFamily: imagePickerTheme.font,
+                          fontSize: imagePickerTheme.closeButtonTextSize,
+                          color: imagePickerTheme.closeButtonTextColor,
+                        ),
+                      ),
+                    ),
+              )
+            ],
+          ),
+          const SizedBox(height: 30),
+        ],
+      ),
+    );
   }
 
   /// The [_generateIconButtonWithText] function returns a column that includes an [IconButton] and [Text].
@@ -125,7 +129,7 @@ class ImagePicker extends StatelessWidget {
             final navigator = Navigator.of(context);
             var image =
                 await (imagePickerService ?? ImagePickerServiceDefault())
-                    .pickImage(imageSource);
+                    .pickImage(imageSource, config: imagePickerConfig);
             navigator.pop(image);
           },
           child: customIcon ??
@@ -138,13 +142,12 @@ class ImagePicker extends StatelessWidget {
         Text(
           bottomText,
           style: TextStyle(
-              fontFamily: imagePickerTheme.font,
-              fontSize: imagePickerTheme.iconTextSize,
-              color: imagePickerTheme.textColor),
+            fontFamily: imagePickerTheme.font,
+            fontSize: imagePickerTheme.iconTextSize,
+            color: imagePickerTheme.textColor,
+          ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
       ],
     );
   }

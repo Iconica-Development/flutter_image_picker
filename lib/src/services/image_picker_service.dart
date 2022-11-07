@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import 'dart:typed_data';
-
+import 'package:flutter_image_picker/src/models/image_picker_config.dart';
 import 'package:image_picker/image_picker.dart';
 
 /// The Image Picker Service class is the functionality of the Image Picker package which uses the Image Picker package to choose an image.
@@ -11,7 +11,10 @@ import 'package:image_picker/image_picker.dart';
 abstract class ImagePickerService {
   /// [pickImage] is the function that picks the image and returns it as a [Uint8List].
   /// The function requires [source], an [ImageSource]
-  Future<Uint8List?> pickImage(ImageSource source);
+  Future<Uint8List?> pickImage(
+    ImageSource source, {
+    ImagePickerConfig? config,
+  });
 }
 
 /// The ImagePickerServiceDefault is the default implementation of the ImagePickerService.
@@ -25,10 +28,15 @@ class ImagePickerServiceDefault implements ImagePickerService {
   /// [pickImage] is the function that picks the image and returns it as a [Uint8List].
   /// The function requires [source], an [ImageSource] that's the method of how the image needs to be picked, for example gallery or camera.
   @override
-  Future<Uint8List?> pickImage(ImageSource source) async {
-    var image =
-        await (await (imagePicker ?? ImagePicker()).pickImage(source: source))
-            ?.readAsBytes();
-    return image;
-  }
+  Future<Uint8List?> pickImage(
+    ImageSource source, {
+    ImagePickerConfig? config,
+  }) async =>
+      await (await (imagePicker ?? ImagePicker()).pickImage(
+        source: source,
+        maxWidth: config?.maxWidth,
+        maxHeight: config?.maxHeight,
+        imageQuality: config?.imageQuality,
+      ))
+          ?.readAsBytes();
 }
