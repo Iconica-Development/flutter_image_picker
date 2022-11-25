@@ -5,36 +5,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_picker/flutter_image_picker.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final imageProvider =
-    StateNotifierProvider.autoDispose<ImageNotifier, Uint8List?>((ref) {
-  return ImageNotifier();
-});
-
-class ImageNotifier extends StateNotifier<Uint8List?> {
-  ImageNotifier() : super(null);
-
-  Uint8List? image;
-
-  void changeImage(Uint8List newImage) {
-    state = image = newImage;
-  }
-
-  void cleanImage() {
-    state = image = null;
-  }
-}
 
 void main() {
-  runApp(const ProviderScope(child: ImagePickerExample()));
+  runApp(const ImagePickerExample());
 }
 
-class ImagePickerExample extends ConsumerWidget {
+class ImagePickerExample extends StatelessWidget {
   const ImagePickerExample({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Image Picker Example',
       theme: ThemeData(
@@ -46,7 +26,7 @@ class ImagePickerExample extends ConsumerWidget {
   }
 }
 
-class ImagePickerExampleHomePage extends ConsumerStatefulWidget {
+class ImagePickerExampleHomePage extends StatefulWidget {
   const ImagePickerExampleHomePage({Key? key, required this.title})
       : super(key: key);
 
@@ -58,24 +38,26 @@ class ImagePickerExampleHomePage extends ConsumerStatefulWidget {
 }
 
 class ImagePickerExampleHomePageState
-    extends ConsumerState<ImagePickerExampleHomePage> {
+    extends State<ImagePickerExampleHomePage> {
   final double whiteSpace = 20;
   final double imageWidth = 300;
   final String placeholder = 'assets/images/placeholder.png';
   final String imageAlreadyDisplayedMessage =
       'The selected image is already being displayed!';
 
+  Uint8List? uploadedImage;
+
   @override
   Widget build(BuildContext context) {
-    final imageWatcher = ref.watch(imageProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
           IconButton(
               onPressed: () {
-                ref.invalidate(imageProvider);
+                setState(() {
+                  uploadedImage = null;
+                });
               },
               icon: const Icon(Icons.delete))
         ],
@@ -85,9 +67,8 @@ class ImagePickerExampleHomePageState
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              ProviderScope(
-                  child: Column(children: [
-                if (imageWatcher == null) ...[
+              Column(children: [
+                if (uploadedImage == null) ...[
                   Image.asset(
                     placeholder,
                     width: imageWidth,
@@ -95,12 +76,12 @@ class ImagePickerExampleHomePageState
                   )
                 ] else ...[
                   Image.memory(
-                    imageWatcher,
+                    uploadedImage!,
                     width: imageWidth,
                     height: imageWidth,
                   )
                 ]
-              ])),
+              ]),
               SizedBox(height: whiteSpace),
               const Text(
                 'Pick an image or make a photo!',
@@ -133,8 +114,10 @@ class ImagePickerExampleHomePageState
         backgroundColor: Colors.white,
         builder: (BuildContext context) => const ImagePicker());
     if (imageInBytes != null) {
-      if (!listEquals(ref.read(imageProvider), imageInBytes)) {
-        ref.read(imageProvider.notifier).changeImage(imageInBytes);
+      if (!listEquals(uploadedImage, imageInBytes)) {
+        setState(() {
+          uploadedImage = imageInBytes;
+        });
       } else {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
