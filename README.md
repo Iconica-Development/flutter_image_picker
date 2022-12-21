@@ -24,4 +24,4 @@ If you would like to contribute to the plugin (e.g. by improving the documentati
 
 ## Author
 
-This `flutter_introduction_widget` for Flutter is developed by [Iconica](https://iconica.nl). You can contact us at <support@iconica.nl>
+This `flutter_image_picker` for Flutter is developed by [Iconica](https://iconica.nl). You can contact us at <support@iconica.nl>
