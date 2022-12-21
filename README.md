@@ -1,4 +1,4 @@
-[![pub package](https://img.shields.io/pub/v/flutter_image_picker.svg)](https://github.com/Iconica-Development) [![Build status](https://img.shields.io/github/workflow/status/Iconica-Development/flutter_image_picker/CI)](https://github.com/Iconica-Development/flutter_image_picker/actions/new) [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart)
+[![pub package](https://img.shields.io/pub/v/flutter_introduction_widget.svg)](https://github.com/Iconica-Development) [![Build status](https://img.shields.io/github/workflow/status/Iconica-Development/flutter_introduction_widget/CI)](https://github.com/Iconica-Development/flutter_image_picker/actions/new) [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart)
 
 # Flutter Image Picker
 
