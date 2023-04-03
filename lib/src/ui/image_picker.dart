@@ -61,17 +61,19 @@ class ImagePicker extends StatelessWidget {
                 ImageSource.gallery,
                 imagePickerTheme.selectImageText,
               ),
-              SizedBox(
-                width: imagePickerTheme.spaceBetweenIcons,
-              ),
-              _generateIconButtonWithText(
-                context,
-                imagePickerTheme.makePhotoIcon,
-                imagePickerTheme,
-                Icons.camera_alt_rounded,
-                ImageSource.camera,
-                imagePickerTheme.makePhotoText,
-              ),
+              if (imagePickerConfig.cameraOption ?? true) ...[
+                SizedBox(
+                  width: imagePickerTheme.spaceBetweenIcons,
+                ),
+                _generateIconButtonWithText(
+                  context,
+                  imagePickerTheme.makePhotoIcon,
+                  imagePickerTheme,
+                  Icons.camera_alt_rounded,
+                  ImageSource.camera,
+                  imagePickerTheme.makePhotoText,
+                ),
+              ]
             ],
           ),
           const SizedBox(height: 10),
