@@ -4,6 +4,7 @@ class ImagePickerConfig {
     this.maxWidth,
     this.maxHeight,
     this.imageQuality,
+    this.cameraOption,
   });
 
   /// If specified, the image will be at most `maxWidth` wide and
@@ -17,4 +18,5 @@ class ImagePickerConfig {
   final double? maxWidth;
   final double? maxHeight;
   final int? imageQuality;
+  final bool? cameraOption;
 }

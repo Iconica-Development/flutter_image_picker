@@ -24,3 +24,7 @@
 ## 1.0.2 - Oktober 21st 2022
 
 - ImagePickerService can be correctly injected into the widget.
+
+## 1.0.4 - April 4th 2023
+
+- Make camera option optional
