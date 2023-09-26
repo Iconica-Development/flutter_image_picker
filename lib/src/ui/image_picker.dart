@@ -132,7 +132,9 @@ class ImagePicker extends StatelessWidget {
             var image =
                 await (imagePickerService ?? ImagePickerServiceDefault())
                     .pickImage(imageSource, config: imagePickerConfig);
-            navigator.pop(image);
+            if (navigator.canPop()) {
+              navigator.pop(image);
+            }
           },
           child: customIcon ??
               Icon(
