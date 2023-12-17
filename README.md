@@ -6,6 +6,9 @@ Image Picker that can be used to pick an image from storage or make a picture wi
 
 ![Image Picker GIF](flutter_image_picker.gif)
 
+Figma Design that defines this component (only accessible for Iconica developers): https://www.figma.com/file/4WkjwynOz5wFeFBRqTHPeP/Iconica-Design-System?type=design&node-id=357%3A3354&mode=design&t=XulkAJNPQ32ARxWh-1
+Figma clickable prototype that demonstrates this component (only accessible for Iconica developers): https://www.figma.com/proto/4WkjwynOz5wFeFBRqTHPeP/Iconica-Design-System?type=design&node-id=340-611&viewport=188%2C-512%2C0.05&t=XulkAJNPQ32ARxWh-0&scaling=min-zoom&starting-point-node-id=516%3A2544&show-proto-sidebar=1
+
 ## Setup
 
 To use this package, add `flutter_image_picker` as a dependency in your pubspec.yaml file.
