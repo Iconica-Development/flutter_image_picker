@@ -8,8 +8,8 @@ class ImagePickerTheme {
   /// The [ImagePickerTheme] is used to style the [ImagePicker].
 
   const ImagePickerTheme({
-    this.font = "Roboto",
-    this.title = "Upload Image",
+    this.font = 'Roboto',
+    this.title = 'Upload Image',
     this.titleTextSize = 20,
     this.titleColor = Colors.black,
     this.titleBackgroundColor = Colors.white,
@@ -20,10 +20,10 @@ class ImagePickerTheme {
     this.iconTextSize = 15,
     this.spaceBetweenIcons = 30,
     this.makePhotoIcon,
-    this.makePhotoText = "Take a Picture",
+    this.makePhotoText = 'Take a Picture',
     this.selectImageIcon,
-    this.selectImageText = "Select File",
-    this.closeButtonText = "Close",
+    this.selectImageText = 'Select File',
+    this.closeButtonText = 'Close',
     this.closeButtonTextSize = 15,
     this.closeButtonTextColor = Colors.white,
     this.closeButtonWidth = 300,
@@ -64,19 +64,23 @@ class ImagePickerTheme {
   /// The size of the space between the two icons in the Image Picker Dialog.
   final double spaceBetweenIcons;
 
-  /// The icon that is displayed for the 'Make Photo' functionality of the Image Picker Dialog.
+  /// The icon that is displayed for the 'Make Photo' functionality of the
+  /// Image Picker Dialog.
   final Widget? makePhotoIcon;
 
   /// The text that is displayed underneath the 'Make Photo' icon.
   final String makePhotoText;
 
-  /// The icon that is displayed for the 'Select Image From Gallery' functionality of the Image Picker Dialog.
+  /// The icon that is displayed for the 'Select Image From Gallery'
+  /// functionality of the Image Picker Dialog.
   final Widget? selectImageIcon;
 
-  /// The text that is displayed underneath the 'Select Image From Gallery' icon.
+  /// The text that is displayed underneath the 'Select Image From Gallery'
+  /// icon.
   final String selectImageText;
 
-  /// The text that is shown on the 'Close Dialog' button at the bottom of the Image Picker Dialog.
+  /// The text that is shown on the 'Close Dialog' button at the bottom of the
+  /// Image Picker Dialog.
   final String closeButtonText;
 
   /// The fontsize of the text of the close button of the Image Picker Dialog.
@@ -85,10 +89,12 @@ class ImagePickerTheme {
   /// The color of the text of the close button of the Image Picker Dialog.
   final Color closeButtonTextColor;
 
-  /// The width of the 'Close Dialog' button at the bottom of the Image Picker Dialog.
+  /// The width of the 'Close Dialog' button at the bottom of the Image Picker
+  /// Dialog.
   final double closeButtonWidth;
 
-  /// The height of the 'Close Dialog' button at the bottom of the Image Picker Dialog.
+  /// The height of the 'Close Dialog' button at the bottom of the Image Picker
+  /// Dialog.
   final double closeButtonHeight;
 
   /// The color of the close button of the Image Picker Dialog.

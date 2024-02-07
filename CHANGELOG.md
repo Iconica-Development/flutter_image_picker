@@ -28,3 +28,7 @@
 ## 1.0.4 - April 4th 2023
 
 - Make camera option optional
+
+## 1.0.5 - February 7th 2024
+
+- Added CI and linter

@@ -1,6 +1,6 @@
 name: flutter_image_picker
 description: A Flutter Image Picking package.
-version: 1.0.4
+version: 1.0.5
 repository: https://github.com/Iconica-Development/flutter_image_picker
 
 environment:
@@ -15,7 +15,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
   mocktail: ^0.3.0
+  flutter_iconica_analysis:
+    git:
+      url: https://github.com/Iconica-Development/flutter_iconica_analysis
+      ref: 6.0.0
 
 flutter:
