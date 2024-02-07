@@ -64,22 +64,22 @@ class ImagePickerTheme {
   /// The size of the space between the two icons in the Image Picker Dialog.
   final double spaceBetweenIcons;
 
-  /// The icon that is displayed for the 'Make Photo' functionality of the 
+  /// The icon that is displayed for the 'Make Photo' functionality of the
   /// Image Picker Dialog.
   final Widget? makePhotoIcon;
 
   /// The text that is displayed underneath the 'Make Photo' icon.
   final String makePhotoText;
 
-  /// The icon that is displayed for the 'Select Image From Gallery' 
+  /// The icon that is displayed for the 'Select Image From Gallery'
   /// functionality of the Image Picker Dialog.
   final Widget? selectImageIcon;
 
-  /// The text that is displayed underneath the 'Select Image From Gallery' 
+  /// The text that is displayed underneath the 'Select Image From Gallery'
   /// icon.
   final String selectImageText;
 
-  /// The text that is shown on the 'Close Dialog' button at the bottom of the 
+  /// The text that is shown on the 'Close Dialog' button at the bottom of the
   /// Image Picker Dialog.
   final String closeButtonText;
 
@@ -89,11 +89,11 @@ class ImagePickerTheme {
   /// The color of the text of the close button of the Image Picker Dialog.
   final Color closeButtonTextColor;
 
-  /// The width of the 'Close Dialog' button at the bottom of the Image Picker 
+  /// The width of the 'Close Dialog' button at the bottom of the Image Picker
   /// Dialog.
   final double closeButtonWidth;
 
-  /// The height of the 'Close Dialog' button at the bottom of the Image Picker 
+  /// The height of the 'Close Dialog' button at the bottom of the Image Picker
   /// Dialog.
   final double closeButtonHeight;
 

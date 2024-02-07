@@ -11,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 /// If you have your own implementation of the Image Picker you can add it to
 /// the constructor when creating the class.
 mixin ImagePickerService {
-  /// [pickImage] is the function that picks the image and returns it as a 
+  /// [pickImage] is the function that picks the image and returns it as a
   /// [Uint8List].
   /// The function requires [source], an [ImageSource]
   Future<Uint8List?> pickImage(
@@ -20,20 +20,20 @@ mixin ImagePickerService {
   });
 }
 
-/// The ImagePickerServiceDefault is the default implementation of the 
+/// The ImagePickerServiceDefault is the default implementation of the
 /// ImagePickerService.
-/// It uses the Image Picker package to pick an image and returns it as a 
+/// It uses the Image Picker package to pick an image and returns it as a
 /// [Uint8List].
 class ImagePickerServiceDefault implements ImagePickerService {
   ImagePickerServiceDefault({this.imagePicker});
 
-  /// It's possible to have your own implementation for the Image Picker if you 
+  /// It's possible to have your own implementation for the Image Picker if you
   /// don't want to use the Image Picker Package.
   ImagePicker? imagePicker;
 
-  /// [pickImage] is the function that picks the image and returns it as a 
+  /// [pickImage] is the function that picks the image and returns it as a
   /// [Uint8List].
-  /// The function requires [source], an [ImageSource] that's the method of how 
+  /// The function requires [source], an [ImageSource] that's the method of how
   /// the image needs to be picked, for example gallery or camera.
   @override
   Future<Uint8List?> pickImage(

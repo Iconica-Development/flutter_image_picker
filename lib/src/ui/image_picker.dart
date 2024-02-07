@@ -114,17 +114,17 @@ class ImagePicker extends StatelessWidget {
         ),
       );
 
-  /// The [_generateIconButtonWithText] function returns a column that includes 
+  /// The [_generateIconButtonWithText] function returns a column that includes
   /// an [IconButton] and [Text].
-  /// The function requires the following parameters to be able to generate an 
+  /// The function requires the following parameters to be able to generate an
   /// icon with text:
-  /// [context] The build context that is required to make the [pickImage] 
+  /// [context] The build context that is required to make the [pickImage]
   /// function in [_imagePickerService] work.
-  /// [imagePickerTheme] The ImagePickerTheme that includes all default values 
+  /// [imagePickerTheme] The ImagePickerTheme that includes all default values
   /// for the Image Picker Dialog.
-  /// [icon] The icon that needs to be displayed, requires an [IconData] as 
+  /// [icon] The icon that needs to be displayed, requires an [IconData] as
   ///value to be used.
-  /// [imageSource] The type of [ImageSource] to be used to pick an image when 
+  /// [imageSource] The type of [ImageSource] to be used to pick an image when
   /// pressed on the icon.
   /// [bottomText] The text that's displayed underneath the icon.
   Column _generateIconButtonWithText(
