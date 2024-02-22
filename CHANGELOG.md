@@ -32,3 +32,7 @@
 ## 1.0.5 - February 7th 2024
 
 - Added CI and linter
+
+## 2.0.0 - February 22nd 2024
+
+- Simplified the ImagePickerTheme

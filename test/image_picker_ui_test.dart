@@ -26,18 +26,14 @@ void main() {
       ),
     );
 
-    var titleFinder =
-        find.text(const iconica_image_picker.ImagePickerTheme().title);
     var makePhotoIconFinder = find.byIcon(Icons.camera_alt_rounded);
     var makePhotoTextFinder =
         find.text(const iconica_image_picker.ImagePickerTheme().makePhotoText);
     var selectImageIconFinder = find.byIcon(Icons.image);
     var selectImageTextFinder = find
         .text(const iconica_image_picker.ImagePickerTheme().selectImageText);
-    var closebuttonTextFinder = find
-        .text(const iconica_image_picker.ImagePickerTheme().closeButtonText);
+    var closebuttonTextFinder = find.text('Close');
 
-    expect(titleFinder, findsOneWidget);
     expect(makePhotoIconFinder, findsOneWidget);
     expect(makePhotoTextFinder, findsOneWidget);
     expect(selectImageIconFinder, findsOneWidget);
@@ -57,7 +53,7 @@ void main() {
       MaterialApp(
         home: Material(
           child: iconica_image_picker.ImagePicker(
-            imagePickerService: serviceMock,
+            service: serviceMock,
           ),
         ),
       ),
@@ -85,7 +81,7 @@ void main() {
       MaterialApp(
         home: Material(
           child: iconica_image_picker.ImagePicker(
-            imagePickerService: serviceMock,
+            service: serviceMock,
           ),
         ),
       ),
@@ -102,7 +98,6 @@ void main() {
   });
 
   testWidgets('Image Picker Shows With Custom Theme', (tester) async {
-    var title = 'title';
     Widget makePhotoIcon = Container(
       height: 125,
       width: 125,
@@ -115,33 +110,29 @@ void main() {
       color: Colors.blue,
     );
     var selectImageText = 'seleeeeect image';
-    var closeButtonText = 'Close Dialog!';
+    var closeButtonText = 'Close';
 
     await tester.pumpWidget(
       MaterialApp(
         home: Material(
           child: iconica_image_picker.ImagePicker(
-            imagePickerTheme: iconica_image_picker.ImagePickerTheme(
-              title: title,
+            theme: iconica_image_picker.ImagePickerTheme(
               makePhotoIcon: makePhotoIcon,
               makePhotoText: makePhotoText,
               selectImageIcon: selectImageIcon,
               selectImageText: selectImageText,
-              closeButtonText: closeButtonText,
             ),
           ),
         ),
       ),
     );
 
-    var titleFinder = find.text(title);
     var makePhotoIconFinder = find.byWidget(makePhotoIcon);
     var makePhotoTextFinder = find.text(makePhotoText);
     var selectImageIconFinder = find.byWidget(selectImageIcon);
     var selectImageTextFinder = find.text(selectImageText);
     var closebuttonTextFinder = find.text(closeButtonText);
 
-    expect(titleFinder, findsOneWidget);
     expect(makePhotoIconFinder, findsOneWidget);
     expect(makePhotoTextFinder, findsOneWidget);
     expect(selectImageIconFinder, findsOneWidget);
