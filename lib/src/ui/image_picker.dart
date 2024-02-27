@@ -18,19 +18,19 @@ import 'package:image_picker/image_picker.dart';
 /// The fourth one is a custom Button widget.
 class ImagePicker extends StatelessWidget {
   const ImagePicker({
-    this.imagePickerTheme = const ImagePickerTheme(),
-    this.imagePickerConfig = const ImagePickerConfig(),
-    this.imagePickerService,
+    this.theme = const ImagePickerTheme(),
+    this.config = const ImagePickerConfig(),
+    this.service,
     this.customButton,
     super.key,
   });
 
   /// ImagePickerTheme can be used to change the UI of the Image Picker Widget to change the text/icons to your liking.
-  final ImagePickerTheme imagePickerTheme;
+  final ImagePickerTheme theme;
 
   /// ImagePickerConfig can be used to define the size and quality for the
   /// uploaded image.
-  final ImagePickerConfig imagePickerConfig;
+  final ImagePickerConfig config;
 
   /// The Image Picker Dialog can have a custom button if you want to.
   final Widget? customButton;
@@ -38,78 +38,66 @@ class ImagePicker extends StatelessWidget {
   /// The ImagePickerService can be used if you want to use your own
   /// implementation of the Image Service if you want to use it for testing or
   /// add more features. If null the current implementation will be used.
-  final ImagePickerService? imagePickerService;
+  final ImagePickerService? service;
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            ListTile(
-              tileColor: imagePickerTheme.titleBackgroundColor,
-              title: Text(
-                textAlign: imagePickerTheme.titleAlignment,
-                imagePickerTheme.title,
-                style: TextStyle(
-                  fontFamily: imagePickerTheme.font,
-                  fontSize: imagePickerTheme.titleTextSize,
-                  color: imagePickerTheme.titleColor,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _generateIconButtonWithText(
                   context,
-                  imagePickerTheme.selectImageIcon,
-                  imagePickerTheme,
+                  theme.selectImageIcon,
+                  theme,
                   Icons.image,
                   ImageSource.gallery,
-                  imagePickerTheme.selectImageText,
+                  theme.selectImageText,
                 ),
-                if (imagePickerConfig.cameraOption ?? true) ...[
+                if (config.cameraOption ?? true) ...[
                   SizedBox(
-                    width: imagePickerTheme.spaceBetweenIcons,
+                    width: theme.spaceBetweenIcons,
                   ),
                   _generateIconButtonWithText(
                     context,
-                    imagePickerTheme.makePhotoIcon,
-                    imagePickerTheme,
+                    theme.makePhotoIcon,
+                    theme,
                     Icons.camera_alt_rounded,
                     ImageSource.camera,
-                    imagePickerTheme.makePhotoText,
+                    theme.makePhotoText,
                   ),
                 ],
               ],
             ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: imagePickerTheme.closeButtonWidth,
-                  height: imagePickerTheme.closeButtonHeight,
+            if (theme.closeButtonBuilder != null) ...[
+              theme.closeButtonBuilder!.call(
+                () => Navigator.of(context).pop(),
+              ),
+            ] else ...[
+              const SizedBox(height: 30),
+              Center(
+                child: SizedBox(
+                  width: 300,
+                  height: 40,
                   child: customButton ??
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              imagePickerTheme.closeButtonBackgroundColor,
+                          backgroundColor: Colors.black,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
-                        child: Text(
-                          imagePickerTheme.closeButtonText,
+                        child: const Text(
+                          'Close',
                           style: TextStyle(
-                            fontFamily: imagePickerTheme.font,
-                            fontSize: imagePickerTheme.closeButtonTextSize,
-                            color: imagePickerTheme.closeButtonTextColor,
+                            fontSize: 15,
+                            color: Colors.white,
                           ),
                         ),
                       ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 30),
+              ),
+              const SizedBox(height: 30),
+            ],
           ],
         ),
       );
@@ -142,9 +130,8 @@ class ImagePicker extends StatelessWidget {
             key: Key(bottomText),
             onTap: () async {
               var navigator = Navigator.of(context);
-              var image =
-                  await (imagePickerService ?? ImagePickerServiceDefault())
-                      .pickImage(imageSource, config: imagePickerConfig);
+              var image = await (service ?? ImagePickerServiceDefault())
+                  .pickImage(imageSource, config: config);
               navigator.pop(image);
             },
             child: customIcon ??
@@ -156,13 +143,8 @@ class ImagePicker extends StatelessWidget {
           ),
           Text(
             bottomText,
-            style: TextStyle(
-              fontFamily: imagePickerTheme.font,
-              fontSize: imagePickerTheme.iconTextSize,
-              color: imagePickerTheme.textColor,
-            ),
+            style: theme.iconTextStyle,
           ),
-          const SizedBox(height: 20),
         ],
       );
 }
