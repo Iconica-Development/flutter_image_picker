@@ -1,6 +1,6 @@
 name: flutter_image_picker
 description: A Flutter Image Picking package.
-version: 2.0.0
+version: 3.0.0
 repository: https://github.com/Iconica-Development/flutter_image_picker
 
 environment:

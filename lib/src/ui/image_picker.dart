@@ -21,7 +21,6 @@ class ImagePicker extends StatelessWidget {
     this.theme = const ImagePickerTheme(),
     this.config = const ImagePickerConfig(),
     this.service,
-    this.customButton,
     super.key,
   });
 
@@ -31,9 +30,6 @@ class ImagePicker extends StatelessWidget {
   /// ImagePickerConfig can be used to define the size and quality for the
   /// uploaded image.
   final ImagePickerConfig config;
-
-  /// The Image Picker Dialog can have a custom button if you want to.
-  final Widget? customButton;
 
   /// The ImagePickerService can be used if you want to use your own
   /// implementation of the Image Service if you want to use it for testing or
@@ -80,20 +76,19 @@ class ImagePicker extends StatelessWidget {
                 child: SizedBox(
                   width: 300,
                   height: 40,
-                  child: customButton ??
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                        ),
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text(
-                          'Close',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text(
+                      'Close',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
                       ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 30),

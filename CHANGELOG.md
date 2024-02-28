@@ -36,3 +36,7 @@
 ## 2.0.0 - February 22nd 2024
 
 - Simplified the ImagePickerTheme
+
+# 3.0.0 - February 22nd 2024
+
+- Removed customButton from ImagePicker.
