@@ -11,7 +11,9 @@ void main() {
 }
 
 class ImagePickerExample extends StatelessWidget {
-  const ImagePickerExample({Key? key}) : super(key: key);
+  const ImagePickerExample({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,10 @@ class ImagePickerExample extends StatelessWidget {
 }
 
 class ImagePickerExampleHomePage extends StatefulWidget {
-  const ImagePickerExampleHomePage({Key? key, required this.title})
-      : super(key: key);
+  const ImagePickerExampleHomePage({
+    required this.title,
+    super.key,
+  });
 
   final String title;
 

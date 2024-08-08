@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
-import 'package:flutter_image_picker/flutter_image_picker.dart';
-import 'package:image_picker/image_picker.dart';
+import "package:flutter/material.dart";
+import "package:flutter_image_picker/flutter_image_picker.dart";
+import "package:image_picker/image_picker.dart";
 
 /// The Image Picker class generates the Image Picker Widget which can be
 /// displayed in your application. If you call the class you can give it 4
@@ -40,6 +40,14 @@ class ImagePicker extends StatelessWidget {
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            ListTile(
+              title: Text(
+                theme.title,
+                style:
+                    theme.titleStyle ?? Theme.of(context).textTheme.titleMedium,
+                textAlign: theme.titleAlignment,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -82,7 +90,7 @@ class ImagePicker extends StatelessWidget {
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text(
-                      'Close',
+                      "Close",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,

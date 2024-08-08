@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class ImagePickerTheme {
   /// The [ImagePickerTheme] is used to style the [ImagePicker].
@@ -12,11 +12,14 @@ class ImagePickerTheme {
     this.iconSize = 125,
     this.spaceBetweenIcons = 30,
     this.makePhotoIcon,
-    this.makePhotoText = 'Take a Picture',
+    this.makePhotoText = "TAKE PICTURE",
     this.selectImageIcon,
-    this.selectImageText = 'Select File',
+    this.selectImageText = "UPLOAD FILE",
     this.iconTextStyle,
     this.closeButtonBuilder,
+    this.title = "Do you want to upload a file or take a picture?",
+    this.titleStyle,
+    this.titleAlignment = TextAlign.center,
   });
 
   /// The color of the icons
@@ -45,5 +48,11 @@ class ImagePickerTheme {
 
   final TextStyle? iconTextStyle;
 
-  final Widget Function(Function onTap)? closeButtonBuilder;
+  final Widget Function(Function() onTap)? closeButtonBuilder;
+
+  final String title;
+
+  final TextStyle? titleStyle;
+
+  final TextAlign titleAlignment;
 }
