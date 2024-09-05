@@ -2,9 +2,10 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
-import 'package:flutter_image_picker/flutter_image_picker.dart';
-import 'package:image_picker/image_picker.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_image_picker/flutter_image_picker.dart";
+import "package:image_picker/image_picker.dart";
 
 /// The Image Picker class generates the Image Picker Widget which can be
 /// displayed in your application. If you call the class you can give it 4
@@ -21,6 +22,7 @@ class ImagePicker extends StatelessWidget {
     this.theme = const ImagePickerTheme(),
     this.config = const ImagePickerConfig(),
     this.service,
+    this.onError,
     super.key,
   });
 
@@ -36,10 +38,20 @@ class ImagePicker extends StatelessWidget {
   /// add more features. If null the current implementation will be used.
   final ImagePickerService? service;
 
+  final Function(PlatformException error)? onError;
+
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            ListTile(
+              title: Text(
+                theme.title,
+                style:
+                    theme.titleStyle ?? Theme.of(context).textTheme.titleMedium,
+                textAlign: theme.titleAlignment,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -50,6 +62,7 @@ class ImagePicker extends StatelessWidget {
                   Icons.image,
                   ImageSource.gallery,
                   theme.selectImageText,
+                  onError,
                 ),
                 if (config.cameraOption ?? true) ...[
                   SizedBox(
@@ -62,6 +75,7 @@ class ImagePicker extends StatelessWidget {
                     Icons.camera_alt_rounded,
                     ImageSource.camera,
                     theme.makePhotoText,
+                    onError,
                   ),
                 ],
               ],
@@ -82,7 +96,7 @@ class ImagePicker extends StatelessWidget {
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text(
-                      'Close',
+                      "Close",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -117,6 +131,7 @@ class ImagePicker extends StatelessWidget {
     IconData icon,
     ImageSource imageSource,
     String bottomText,
+    Function(PlatformException error)? onError,
   ) =>
       Column(
         mainAxisSize: MainAxisSize.min,
@@ -125,8 +140,14 @@ class ImagePicker extends StatelessWidget {
             key: Key(bottomText),
             onTap: () async {
               var navigator = Navigator.of(context);
-              var image = await (service ?? ImagePickerServiceDefault())
-                  .pickImage(imageSource, config: config);
+              Uint8List? image;
+              try {
+                image = await (service ?? ImagePickerServiceDefault())
+                    .pickImage(imageSource, config: config);
+              } on PlatformException catch (e) {
+                debugPrint("image_picker_error: $e");
+                onError?.call(e);
+              }
               navigator.pop(image);
             },
             child: customIcon ??

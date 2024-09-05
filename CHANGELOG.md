@@ -40,3 +40,11 @@
 # 3.0.0 - February 22nd 2024
 
 - Removed customButton from ImagePicker.
+
+# 4.0.0
+* Added title options to theme.
+* updated iconica_analysis dependency.
+* Updated default theme.
+
+# 4.1.0
+* Added support for handling errors when calling `pickImage`.

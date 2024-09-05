@@ -11,7 +11,9 @@ void main() {
 }
 
 class ImagePickerExample extends StatelessWidget {
-  const ImagePickerExample({Key? key}) : super(key: key);
+  const ImagePickerExample({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,10 @@ class ImagePickerExample extends StatelessWidget {
 }
 
 class ImagePickerExampleHomePage extends StatefulWidget {
-  const ImagePickerExampleHomePage({Key? key, required this.title})
-      : super(key: key);
+  const ImagePickerExampleHomePage({
+    required this.title,
+    super.key,
+  });
 
   final String title;
 
@@ -112,7 +116,13 @@ class ImagePickerExampleHomePageState
     Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
         context: context,
         backgroundColor: Colors.white,
-        builder: (BuildContext context) => const ImagePicker());
+        builder: (BuildContext context) => ImagePicker(
+              onError: (error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(error.message ?? "An error occurred")),
+                );
+              },
+            ));
     if (imageInBytes != null) {
       if (!listEquals(uploadedImage, imageInBytes)) {
         setState(() {

@@ -2,22 +2,22 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'dart:typed_data';
+import "dart:typed_data";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_image_picker/flutter_image_picker.dart'
+import "package:flutter/material.dart";
+import "package:flutter_image_picker/flutter_image_picker.dart"
     as iconica_image_picker;
-import 'package:flutter_test/flutter_test.dart';
-import 'package:image_picker/image_picker.dart' as image_picker;
-import 'package:mocktail/mocktail.dart';
+import "package:flutter_test/flutter_test.dart";
+import "package:image_picker/image_picker.dart" as image_picker;
+import "package:mocktail/mocktail.dart";
 
-import 'mocks/image_picker_service_mock.dart';
+import "mocks/image_picker_service_mock.dart";
 
 void main() {
   var cameraImage = Uint8List(10);
   var galleryImage = Uint8List(44);
 
-  testWidgets('Image Picker Shows With Normal Theme', (tester) async {
+  testWidgets("Image Picker Shows With Normal Theme", (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Material(
@@ -32,7 +32,7 @@ void main() {
     var selectImageIconFinder = find.byIcon(Icons.image);
     var selectImageTextFinder = find
         .text(const iconica_image_picker.ImagePickerTheme().selectImageText);
-    var closebuttonTextFinder = find.text('Close');
+    var closebuttonTextFinder = find.text("Close");
 
     expect(makePhotoIconFinder, findsOneWidget);
     expect(makePhotoTextFinder, findsOneWidget);
@@ -42,7 +42,7 @@ void main() {
   });
 
   testWidgets(
-      'Image Picker Calls Function Correctly When ImageSource Is Gallery',
+      "Image Picker Calls Function Correctly When ImageSource Is Gallery",
       (tester) async {
     var serviceMock = ImagePickerServiceMock();
 
@@ -70,7 +70,7 @@ void main() {
   });
 
   testWidgets(
-      'Image Picker Calls Function Correctly When ImageSource Is Camera',
+      "Image Picker Calls Function Correctly When ImageSource Is Camera",
       (tester) async {
     var serviceMock = ImagePickerServiceMock();
 
@@ -97,20 +97,20 @@ void main() {
         .called(1);
   });
 
-  testWidgets('Image Picker Shows With Custom Theme', (tester) async {
+  testWidgets("Image Picker Shows With Custom Theme", (tester) async {
     Widget makePhotoIcon = Container(
       height: 125,
       width: 125,
       color: Colors.red,
     );
-    var makePhotoText = 'taaaake image';
+    var makePhotoText = "taaaake image";
     Widget selectImageIcon = Container(
       height: 125,
       width: 125,
       color: Colors.blue,
     );
-    var selectImageText = 'seleeeeect image';
-    var closeButtonText = 'Close';
+    var selectImageText = "seleeeeect image";
+    var closeButtonText = "Close";
 
     await tester.pumpWidget(
       MaterialApp(
