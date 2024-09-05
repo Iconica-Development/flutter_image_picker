@@ -116,7 +116,13 @@ class ImagePickerExampleHomePageState
     Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
         context: context,
         backgroundColor: Colors.white,
-        builder: (BuildContext context) => const ImagePicker());
+        builder: (BuildContext context) => ImagePicker(
+              onError: (error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(error.message ?? "An error occurred")),
+                );
+              },
+            ));
     if (imageInBytes != null) {
       if (!listEquals(uploadedImage, imageInBytes)) {
         setState(() {

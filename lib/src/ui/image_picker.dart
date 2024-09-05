@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_image_picker/flutter_image_picker.dart";
 import "package:image_picker/image_picker.dart";
 
@@ -21,6 +22,7 @@ class ImagePicker extends StatelessWidget {
     this.theme = const ImagePickerTheme(),
     this.config = const ImagePickerConfig(),
     this.service,
+    this.onError,
     super.key,
   });
 
@@ -35,6 +37,8 @@ class ImagePicker extends StatelessWidget {
   /// implementation of the Image Service if you want to use it for testing or
   /// add more features. If null the current implementation will be used.
   final ImagePickerService? service;
+
+  final Function(PlatformException error)? onError;
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -58,6 +62,7 @@ class ImagePicker extends StatelessWidget {
                   Icons.image,
                   ImageSource.gallery,
                   theme.selectImageText,
+                  onError,
                 ),
                 if (config.cameraOption ?? true) ...[
                   SizedBox(
@@ -70,6 +75,7 @@ class ImagePicker extends StatelessWidget {
                     Icons.camera_alt_rounded,
                     ImageSource.camera,
                     theme.makePhotoText,
+                    onError,
                   ),
                 ],
               ],
@@ -125,6 +131,7 @@ class ImagePicker extends StatelessWidget {
     IconData icon,
     ImageSource imageSource,
     String bottomText,
+    Function(PlatformException error)? onError,
   ) =>
       Column(
         mainAxisSize: MainAxisSize.min,
@@ -133,8 +140,14 @@ class ImagePicker extends StatelessWidget {
             key: Key(bottomText),
             onTap: () async {
               var navigator = Navigator.of(context);
-              var image = await (service ?? ImagePickerServiceDefault())
-                  .pickImage(imageSource, config: config);
+              Uint8List? image;
+              try {
+                image = await (service ?? ImagePickerServiceDefault())
+                    .pickImage(imageSource, config: config);
+              } on PlatformException catch (e) {
+                debugPrint("image_picker_error: $e");
+                onError?.call(e);
+              }
               navigator.pop(image);
             },
             child: customIcon ??
