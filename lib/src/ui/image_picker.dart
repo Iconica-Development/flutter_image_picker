@@ -1,11 +1,8 @@
-// SPDX-FileCopyrightText: 2022 Iconica
-//
-// SPDX-License-Identifier: BSD-3-Clause
-
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_image_picker/flutter_image_picker.dart";
 import "package:image_picker/image_picker.dart";
+import 'package:flutter_image_picker/src/services/permission_service.dart';
 
 /// The Image Picker class generates the Image Picker Widget which can be
 /// displayed in your application. If you call the class you can give it 4
@@ -141,6 +138,14 @@ class ImagePicker extends StatelessWidget {
             onTap: () async {
               var navigator = Navigator.of(context);
               Uint8List? image;
+              var permissionService = PermissionService();
+              bool hasPermission = await permissionService.checkAndRequestPermission(
+                imageSource == ImageSource.camera ? Permission.camera : Permission.photos,
+              );
+              if (!hasPermission) {
+                _showPermissionDeniedDialog(context);
+                return;
+              }
               try {
                 image = await (service ?? ImagePickerServiceDefault())
                     .pickImage(imageSource, config: config);
@@ -163,4 +168,25 @@ class ImagePicker extends StatelessWidget {
           ),
         ],
       );
+
+  void _showPermissionDeniedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Permission Denied'),
+          content: const Text(
+              'We need permission to access your media to use this feature.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

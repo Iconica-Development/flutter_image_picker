@@ -1,10 +1,7 @@
-// SPDX-FileCopyrightText: 2022 Iconica
-//
-// SPDX-License-Identifier: BSD-3-Clause
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_picker/flutter_image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(const ImagePickerExample());
@@ -103,6 +100,40 @@ class ImagePickerExampleHomePageState
     );
   }
 
+  Future<bool> _requestPermission(Permission permission) async {
+    if (await permission.isGranted) {
+      return true;
+    } else {
+      var result = await permission.request();
+      if (result == PermissionStatus.granted) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  void _showPermissionDeniedDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Permission Denied'),
+          content: const Text(
+              'We need permission to access your media to use this feature.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   /// The [pickImage] function is used to show the usage of the Image Picker Package.
   /// The most important part is the [ImagePicker] call.
   /// You can add a custom [ImagePickerTheme] to the [ImagePicker] if you want to change some of the UI.
@@ -113,28 +144,33 @@ class ImagePickerExampleHomePageState
   /// This function saves the image in a variable and if it's different than the current image it will get displayed in the application.
   /// When the same image is chosen there will be a snackbar popping up to let you know it's already being displayed.
   void pickImage() async {
-    Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
-        context: context,
-        backgroundColor: Colors.white,
-        builder: (BuildContext context) => ImagePicker(
-              onError: (error) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(error.message ?? "An error occurred")),
-                );
-              },
-            ));
-    if (imageInBytes != null) {
-      if (!listEquals(uploadedImage, imageInBytes)) {
-        setState(() {
-          uploadedImage = imageInBytes;
-        });
-      } else {
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(imageAlreadyDisplayedMessage)),
-        );
+    if (await _requestPermission(Permission.storage)) {
+      Uint8List? imageInBytes = await showModalBottomSheet<Uint8List?>(
+          context: context,
+          backgroundColor: Colors.white,
+          builder: (BuildContext context) => ImagePicker(
+                onError: (error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(error.message ?? "An error occurred")),
+                  );
+                },
+              ));
+      if (imageInBytes != null) {
+        if (!listEquals(uploadedImage, imageInBytes)) {
+          setState(() {
+            uploadedImage = imageInBytes;
+          });
+        } else {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(imageAlreadyDisplayedMessage)),
+          );
+        }
       }
+      imageInBytes = null;
+    } else {
+      _showPermissionDeniedDialog();
     }
-    imageInBytes = null;
   }
 }
