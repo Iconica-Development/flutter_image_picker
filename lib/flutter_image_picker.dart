@@ -4,6 +4,8 @@
 ///
 library flutter_image_picker;
 
+export "package:image_picker/image_picker.dart" show XFile;
+
 export "src/models/image_picker_config.dart";
 export "src/models/image_picker_theme.dart";
 export "src/services/image_picker_service.dart";

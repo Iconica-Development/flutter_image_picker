@@ -1,3 +1,6 @@
+# 5.0.0
+* Added `allowMultiple` option to the `ImagePickerConfig` to select multiple images at once.
+
 # 4.1.0
 * Added support for handling errors when calling `pickImage`.
 

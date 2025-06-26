@@ -5,6 +5,7 @@ class ImagePickerConfig {
     this.maxHeight,
     this.imageQuality,
     this.cameraOption,
+    this.allowMultiple = true,
   });
 
   /// If specified, the image will be at most `maxWidth` wide and
@@ -20,4 +21,7 @@ class ImagePickerConfig {
   final double? maxHeight;
   final int? imageQuality;
   final bool? cameraOption;
+
+  /// If set to true, the user can select multiple images.
+  final bool allowMultiple;
 }
