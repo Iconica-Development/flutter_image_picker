@@ -5,7 +5,7 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_image_picker/flutter_image_picker.dart";
-import "package:image_picker/image_picker.dart";
+import "package:image_picker/image_picker.dart" as image_picker;
 
 /// The Image Picker class generates the Image Picker Widget which can be
 /// displayed in your application. If you call the class you can give it 4
@@ -36,7 +36,7 @@ class ImagePicker extends StatelessWidget {
   /// The ImagePickerService can be used if you want to use your own
   /// implementation of the Image Service if you want to use it for testing or
   /// add more features. If null the current implementation will be used.
-  final ImagePickerService? service;
+  final ImageFilePickerService? service;
 
   final Function(PlatformException error)? onError;
 
@@ -60,7 +60,7 @@ class ImagePicker extends StatelessWidget {
                   theme.selectImageIcon,
                   theme,
                   Icons.image,
-                  ImageSource.gallery,
+                  image_picker.ImageSource.gallery,
                   theme.selectImageText,
                   onError,
                 ),
@@ -73,7 +73,7 @@ class ImagePicker extends StatelessWidget {
                     theme.makePhotoIcon,
                     theme,
                     Icons.camera_alt_rounded,
-                    ImageSource.camera,
+                    image_picker.ImageSource.camera,
                     theme.makePhotoText,
                     onError,
                   ),
@@ -129,7 +129,7 @@ class ImagePicker extends StatelessWidget {
     Widget? customIcon,
     ImagePickerTheme imagePickerTheme,
     IconData icon,
-    ImageSource imageSource,
+    image_picker.ImageSource imageSource,
     String bottomText,
     Function(PlatformException error)? onError,
   ) =>
@@ -140,15 +140,28 @@ class ImagePicker extends StatelessWidget {
             key: Key(bottomText),
             onTap: () async {
               var navigator = Navigator.of(context);
-              Uint8List? image;
+              List<image_picker.XFile>? result;
+
               try {
-                image = await (service ?? ImagePickerServiceDefault())
-                    .pickImage(imageSource, config: config);
+                var pickerService = service ?? ImageFilePickerServiceDefault();
+
+                if (config.allowMultiple &&
+                    imageSource == image_picker.ImageSource.gallery) {
+                  result = await pickerService.pickMultiImage(config: config);
+                } else {
+                  var singleFile = await pickerService.pickImage(
+                    imageSource,
+                    config: config,
+                  );
+                  if (singleFile != null) {
+                    result = [singleFile];
+                  }
+                }
               } on PlatformException catch (e) {
                 debugPrint("image_picker_error: $e");
                 onError?.call(e);
               }
-              navigator.pop(image);
+              navigator.pop(result);
             },
             child: customIcon ??
                 Icon(

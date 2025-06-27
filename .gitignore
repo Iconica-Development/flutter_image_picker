@@ -27,6 +27,7 @@ migrate_working_dir/
 **/doc/api/
 .dart_tool/
 .packages
+.metadata
 build/
 coverage/
 /.flutter-plugins
@@ -35,3 +36,10 @@ coverage/
 # FVM Version Cache
 .fvm/
 .fvmrc
+
+linux
+macos
+windows
+web
+android
+ios

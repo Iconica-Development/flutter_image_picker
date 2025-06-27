@@ -12,3 +12,4 @@ jobs:
     permissions: write-all
     with:
       subfolder: "." # add optional subfolder to run workflow in
+      use_test_assets: true

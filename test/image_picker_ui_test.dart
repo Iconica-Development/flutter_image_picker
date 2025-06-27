@@ -2,20 +2,39 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import "dart:typed_data";
-
 import "package:flutter/material.dart";
 import "package:flutter_image_picker/flutter_image_picker.dart"
     as iconica_image_picker;
+import "package:flutter_image_picker/src/services/image_picker_service.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:image_picker/image_picker.dart" as image_picker;
 import "package:mocktail/mocktail.dart";
 
-import "mocks/image_picker_service_mock.dart";
+class MockImageFilePickerService extends Mock
+    implements ImageFilePickerService {}
+
+class MockXFile extends Mock implements image_picker.XFile {}
+
+class FakeImagePickerConfig extends Fake
+    implements iconica_image_picker.ImagePickerConfig {}
 
 void main() {
-  var cameraImage = Uint8List(10);
-  var galleryImage = Uint8List(44);
+  // Setup mocks for XFile to be returned by the service
+  late image_picker.XFile cameraImage;
+  late image_picker.XFile galleryImage;
+  late List<image_picker.XFile> galleryImages;
+
+  setUpAll(() {
+    // Register fallback values for any types used with `any()` in mocks.
+    registerFallbackValue(FakeImagePickerConfig());
+    registerFallbackValue(image_picker.ImageSource.gallery);
+  });
+
+  setUp(() {
+    cameraImage = MockXFile();
+    galleryImage = MockXFile();
+    galleryImages = [MockXFile(), MockXFile()];
+  });
 
   testWidgets("Image Picker Shows With Normal Theme", (tester) async {
     await tester.pumpWidget(
@@ -42,18 +61,25 @@ void main() {
   });
 
   testWidgets(
-      "Image Picker Calls Function Correctly When ImageSource Is Gallery",
+      "Image Picker Calls pickImage correctly When ImageSource Is Gallery",
       (tester) async {
-    var serviceMock = ImagePickerServiceMock();
+    var serviceMock = MockImageFilePickerService();
 
-    when(() => serviceMock.pickImage(image_picker.ImageSource.gallery))
-        .thenAnswer((_) => Future.value(galleryImage));
+    when(
+      () => serviceMock.pickImage(
+        image_picker.ImageSource.gallery,
+        config: any(named: "config"),
+      ),
+    ).thenAnswer((_) async => galleryImage);
 
     await tester.pumpWidget(
       MaterialApp(
         home: Material(
           child: iconica_image_picker.ImagePicker(
             service: serviceMock,
+            config: const iconica_image_picker.ImagePickerConfig(
+              allowMultiple: false,
+            ),
           ),
         ),
       ),
@@ -65,17 +91,29 @@ void main() {
 
     await tester.tap(finder);
 
-    verify(() => serviceMock.pickImage(image_picker.ImageSource.gallery))
-        .called(1);
+    verify(
+      () => serviceMock.pickImage(
+        image_picker.ImageSource.gallery,
+        config: any(named: "config"),
+      ),
+    ).called(1);
+
+    verifyNever(() => serviceMock.pickMultiImage(config: any(named: "config")));
   });
 
   testWidgets(
-      "Image Picker Calls Function Correctly When ImageSource Is Camera",
+      "Image Picker Calls pickImage correctly When ImageSource Is Camera",
       (tester) async {
-    var serviceMock = ImagePickerServiceMock();
+    var serviceMock = MockImageFilePickerService();
 
-    when(() => serviceMock.pickImage(image_picker.ImageSource.camera))
-        .thenAnswer((_) => Future.value(cameraImage));
+    when(
+      () => serviceMock.pickImage(
+        image_picker.ImageSource.camera,
+        config: any(named: "config"),
+      ),
+    ).thenAnswer(
+      (_) async => cameraImage,
+    );
 
     await tester.pumpWidget(
       MaterialApp(
@@ -93,8 +131,46 @@ void main() {
 
     await tester.tap(finder);
 
-    verify(() => serviceMock.pickImage(image_picker.ImageSource.camera))
+    verify(
+      () => serviceMock.pickImage(
+        image_picker.ImageSource.camera,
+        config: any(named: "config"),
+      ),
+    ).called(1);
+  });
+
+  testWidgets(
+      "Image Picker Calls pickMultiImage when allowMultiple is "
+      "true and source is gallery", (tester) async {
+    var serviceMock = MockImageFilePickerService();
+
+    when(() => serviceMock.pickMultiImage(config: any(named: "config")))
+        .thenAnswer((_) async => galleryImages);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Material(
+          child: iconica_image_picker.ImagePicker(
+            service: serviceMock,
+            config: const iconica_image_picker.ImagePickerConfig(
+              allowMultiple: true,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    var finder = find.byKey(
+      Key(const iconica_image_picker.ImagePickerTheme().selectImageText),
+    );
+
+    await tester.tap(finder);
+
+    verify(() => serviceMock.pickMultiImage(config: any(named: "config")))
         .called(1);
+    verifyNever(
+      () => serviceMock.pickImage(any(), config: any(named: "config")),
+    );
   });
 
   testWidgets("Image Picker Shows With Custom Theme", (tester) async {

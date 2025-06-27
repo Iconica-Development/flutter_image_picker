@@ -2,49 +2,73 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import "dart:typed_data";
 import "package:flutter_image_picker/src/models/image_picker_config.dart";
-import "package:image_picker/image_picker.dart";
+import "package:image_picker/image_picker.dart" as image_picker;
 
-/// The Image Picker Service class is the functionality of the Image Picker
-/// package which uses the Image Picker package to choose an image.
-/// If you have your own implementation of the Image Picker you can add it to
-/// the constructor when creating the class.
-mixin ImagePickerService {
-  /// [pickImage] is the function that picks the image and returns it as a
-  /// [Uint8List].
-  /// The function requires [source], an [ImageSource]
-  Future<Uint8List?> pickImage(
-    ImageSource source, {
+/// An abstract service that defines the contract for picking images.
+///
+/// This allows for interchangeable implementations, such as a default one
+/// using the `image_picker` package or a mock service for testing.
+mixin ImageFilePickerService {
+  /// Picks a single image from the specified [source].
+  ///
+  /// Returns a [Future] that completes with an [XFile] object of the picked
+  /// image, or `null` if the user cancels the operation.
+  ///
+  /// The optional [config] can be used to specify constraints like
+  /// max width, max height, and image quality.
+  Future<image_picker.XFile?> pickImage(
+    image_picker.ImageSource source, {
+    ImagePickerConfig? config,
+  });
+
+  /// Picks multiple images from the gallery.
+  ///
+  /// Returns a [Future] that completes with a list of [XFile] objects for the
+  /// picked images, or `null` if the user cancels the operation.
+  ///
+  /// The optional [config] can be used to specify constraints like
+  /// max width, max height, and image quality.
+  Future<List<image_picker.XFile>?> pickMultiImage({
     ImagePickerConfig? config,
   });
 }
 
-/// The ImagePickerServiceDefault is the default implementation of the
-/// ImagePickerService.
-/// It uses the Image Picker package to pick an image and returns it as a
-/// [Uint8List].
-class ImagePickerServiceDefault implements ImagePickerService {
-  ImagePickerServiceDefault({this.imagePicker});
+/// The default implementation of [ImageFilePickerService] that uses the
+/// `image_picker` package to handle image selection.
+class ImageFilePickerServiceDefault implements ImageFilePickerService {
+  /// Creates an instance of the default image picker service.
+  ///
+  /// An optional [imagePicker] instance can be provided, which is useful
+  /// for testing or if a custom-configured `ImagePicker` is needed.
+  /// If not provided, a new instance of `image_picker.ImagePicker` is created.
+  ImageFilePickerServiceDefault({this.imagePicker});
 
-  /// It's possible to have your own implementation for the Image Picker if you
-  /// don't want to use the Image Picker Package.
-  ImagePicker? imagePicker;
+  /// An optional instance of the `ImagePicker` from the `image_picker` package.
+  ///
+  /// Used to override the default `ImagePicker` instance, primarily for
+  /// testing.
+  final image_picker.ImagePicker? imagePicker;
 
-  /// [pickImage] is the function that picks the image and returns it as a
-  /// [Uint8List].
-  /// The function requires [source], an [ImageSource] that's the method of how
-  /// the image needs to be picked, for example gallery or camera.
   @override
-  Future<Uint8List?> pickImage(
-    ImageSource source, {
+  Future<image_picker.XFile?> pickImage(
+    image_picker.ImageSource source, {
     ImagePickerConfig? config,
   }) async =>
-      await (await (imagePicker ?? ImagePicker()).pickImage(
+      (imagePicker ?? image_picker.ImagePicker()).pickImage(
         source: source,
         maxWidth: config?.maxWidth,
         maxHeight: config?.maxHeight,
         imageQuality: config?.imageQuality,
-      ))
-          ?.readAsBytes();
+      );
+
+  @override
+  Future<List<image_picker.XFile>?> pickMultiImage({
+    ImagePickerConfig? config,
+  }) async =>
+      (imagePicker ?? image_picker.ImagePicker()).pickMultiImage(
+        maxWidth: config?.maxWidth,
+        maxHeight: config?.maxHeight,
+        imageQuality: config?.imageQuality,
+      );
 }
